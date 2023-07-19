@@ -17,6 +17,11 @@ class Calulator {
     if (isCalculateError(args)) return MESSAGE.ERROR;
     return a * b;
   }
+  static divide(...args) {
+    const [a, b] = args;
+    if (isCalculateError(args)) return MESSAGE.ERROR;
+    return a / b;
+  }
 }
 
 export default Calulator;

@@ -24,7 +24,7 @@ class Calulator {
     const [a, b] = args;
     if (isCalculateError(args)) return MESSAGE.ARG_ERROR;
     if (isOrLessThanThreeDigits(a, b)) return MESSAGE.DIGIT_ERROR;
-    return a / b;
+    return Math.floor(a / b);
   }
 }
 

@@ -18,6 +18,10 @@ describe('계산기 기능 요구사항 테스트', () => {
     const result = Calulator.divide(5, 1);
     expect(result).toBe(5);
   });
+  test('계산 결과를 표현할 때 소수점 이하는 버림할 수 있어야 한다.', () => {
+    const result = Calulator.divide(1, 5);
+    expect(result).toBe(0);
+  });
 });
 
 describe('계산기 예외 처리 테스트', () => {

@@ -35,4 +35,14 @@ describe('계산기 예외 처리 테스트', () => {
     const digitErrorArr = Array(result.length).fill(MESSAGE.DIGIT_ERROR);
     expect(result).toStrictEqual(digitErrorArr);
   });
+  test('만약 2개의 숫자를 계산하지 않는 경우 예외 처리가 되어야 한다.', () => {
+    const result = [
+      Calulator.add(1, 2, 3),
+      Calulator.subtract(3),
+      Calulator.multiply(5, 2, 1, 7, 3),
+      Calulator.divide(6, 2, 3, 4),
+    ];
+    const argErrorArr = Array(result.length).fill(MESSAGE.ARG_ERROR);
+    expect(result).toStrictEqual(argErrorArr);
+  });
 });

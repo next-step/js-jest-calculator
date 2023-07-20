@@ -24,7 +24,7 @@ export const TEST_FUCNTION_SAMPLES = [
   ],
 ];
 
-export const MESSAGE_TEST_SAMPLES = [
+export const EXCEPTION_TEST_SAMPLES = [
   [
     { args: [1, 2, 3], expected: ERROR_MESSAGE.ARG_ERROR },
     { args: [1], expected: ERROR_MESSAGE.ARG_ERROR },

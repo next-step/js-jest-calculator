@@ -2,7 +2,7 @@ import Calculator from '../src/Calculator';
 import { CALCULATE_COMMAND } from '../src/constants/commands';
 import { TEST_MESSAGE } from '../src/constants/message';
 import {
-  MESSAGE_TEST_SAMPLES,
+  EXCEPTION_TEST_SAMPLES,
   TEST_FUCNTION_SAMPLES,
 } from '../src/constants/testSample';
 
@@ -31,23 +31,23 @@ const arithmeticTestResults = () => {
   });
 };
 
-const genMessageResults = (params, message) => {
+const genExceptionResults = (params, message) => {
   test.each(params)(message, ({ args, expected }) => {
-    const calculate_table = [
-      calculator.add(...args),
-      calculator.subtract(...args),
-      calculator.multiply(...args),
-      calculator.divide(...args),
+    const calculateFnArr = [
+      () => calculator.add(...args),
+      () => calculator.subtract(...args),
+      () => calculator.multiply(...args),
+      () => calculator.divide(...args),
     ];
-    calculate_table.forEach((received) => {
-      expect(received).toBe(expected);
+    calculateFnArr.forEach((fn) => {
+      expect(fn).toThrow(expected);
     });
   });
 };
 
-const confirmMessageTestResults = () => {
-  MESSAGE_TEST_SAMPLES.forEach((params, i) => {
-    genMessageResults(params, TEST_MESSAGE.MESSAGE_TEST[i]);
+const confirmExceptionTestResults = () => {
+  EXCEPTION_TEST_SAMPLES.forEach((params, i) => {
+    genExceptionResults(params, TEST_MESSAGE.EXCEPTION_TEST[i]);
   });
 };
 
@@ -55,6 +55,6 @@ describe('계산기 기능 요구사항 테스트', () => {
   arithmeticTestResults();
 });
 
-describe('계산기 메시지 확인 테스트', () => {
-  confirmMessageTestResults();
+describe('계산기 예외 확인 테스트', () => {
+  confirmExceptionTestResults();
 });

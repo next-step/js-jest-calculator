@@ -10,7 +10,7 @@ export const TEST_MESSAGE = Object.freeze({
     MULTIPLY: '2개의 숫자에 대해 곱셈이 가능하다.',
     DIVIDE: '2개의 숫자에 대해 나눗셈이 가능하다.',
   }),
-  MESSAGE_TEST: [
+  EXCEPTION_TEST: [
     '숫자는 한번에 최대 4자리 수 이상이 되면 예외처리가 되어야 한다.',
     '2개의 숫자를 계산하지 않는 경우 예외 처리가 되어야 한다.',
   ],

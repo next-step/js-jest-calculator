@@ -11,4 +11,5 @@ export const isOrLessThanThreeDigits = (args) => {
   return Validator.isError(isOrLessThanThreeDigits, ERROR_MESSAGE.DIGIT_ERROR);
 };
 
-export const genFloorValue = (value) => Math.floor(value);
+export const genFloorValue = (value) =>
+  value < 0 ? Math.ceil(value) : Math.floor(value);

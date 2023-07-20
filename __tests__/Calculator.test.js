@@ -36,4 +36,11 @@ describe('계산기', () => {
       '숫자는 한 번에 3자리까지 입력 가능합니다.'
     );
   });
+
+  it('계산 결과를 표현할 때 소수점 이하는 버림한다', () => {
+    const calculator = new Calculator();
+    const result = calculator.divide(1, 2);
+
+    expect(result).toBe(0);
+  });
 });

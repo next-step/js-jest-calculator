@@ -9,51 +9,252 @@ describe('Calculator - Feature', () => {
     calculator = new Calculator()
   })
 
-  it('2개의 숫자에 대해 덧셈이 가능해야 합니다.', () => {
-    // Given
-    const numA = 2
-    const numB = 3
+  describe('calculator.sum()', () => {
+    it('2개의 양수에 대해 덧셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = 3
 
-    // When
-    calculator.sum(numA, numB)
+      // When
+      calculator.sum(numA, numB)
 
-    // Then
-    expect(calculator.getValue()).toBe(5)
+      // Then
+      expect(calculator.getValue()).toBe(5)
+    })
+
+    it('2개의 음수에 대해 덧셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = -2
+      const numB = -3
+
+      // When
+      calculator.sum(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-5)
+    })
+
+    it('1개의 음수와 1개의 양수에 대해 덧셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = 20
+      const numB = -31
+
+      // When
+      calculator.sum(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-11)
+    })
+
+    it('1개의 양수와 1개의 양의 소수에 대해 덧셈을 하는 경우, 소수점 이하는 버림해서 보여주어야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = 3.555555555
+
+      // When
+      calculator.sum(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(5)
+    })
+
+    it('1개의 양수와 1개의 음의 소수에 대해 덧셈을 하는 경우, 소수점 이하는 버림해서 보여주어야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = -3.555555555
+
+      // When
+      calculator.sum(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-1)
+    })
   })
 
-  it('2개의 숫자에 대해 뺄셈이 가능해야 합니다.', () => {
-    // Given
-    const numA = 2
-    const numB = 3
+  describe('calculator.subtract()', () => {
+    it('2개의 양수에 대해 뺄셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = 3
 
-    // When
-    calculator.subtract(numA, numB)
+      // When
+      calculator.subtract(numA, numB)
 
-    // Then
-    expect(calculator.getValue()).toBe(-1)
+      // Then
+      expect(calculator.getValue()).toBe(-1)
+    })
+
+    it('2개의 음수에 대해 뺄셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = -2
+      const numB = -3
+
+      // When
+      calculator.subtract(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-5)
+    })
+
+    it('1개의 음수와 1개의 양수에 대해 뺄셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = -3
+
+      // When
+      calculator.subtract(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-1)
+    })
+
+    it('1개의 양수와 1개의 양의 소수에 대해 뺄셈을 하는 경우, 소수점 이하는 버림해서 보여주어야 합니다.', () => {
+      // Given
+      const numA = 1
+      const numB = 2.44444444
+
+      // When
+      calculator.subtract(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-1)
+    })
+
+    it('1개의 양수와 1개의 음의 소수에 대해 뺄셈을 하는 경우, 소수점 이하는 버림해서 보여주어야 합니다.', () => {
+      // Given
+      const numA = 3
+      const numB = -2.44444444
+
+      // When
+      calculator.subtract(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(0)
+    })
   })
-  it('2개의 숫자에 대해 곱셈이 가능해야 합니다.', () => {
-    // Given
-    const numA = 2
-    const numB = 3
 
-    // When
-    calculator.multiply(numA, numB)
+  describe('calculator.multiply()', () => {
+    it('2개의 양수에 대해 곱셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = 3
 
-    // Then
-    expect(calculator.getValue()).toBe(6)
+      // When
+      calculator.multiply(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(6)
+    })
+
+    it('2개의 음수에 대해 곱셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = -2
+      const numB = -3
+
+      // When
+      calculator.multiply(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(6)
+    })
+
+    it('1개의 음수와 1개의 양수에 대해 곱셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = 20
+      const numB = -31
+
+      // When
+      calculator.multiply(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-620)
+    })
+
+    it('1개의 양수와 1개의 양의 소수에 대해 곱셈을 하는 경우, 소수점 이하는 버림해서 보여주어야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = 3.555555555
+
+      // When
+      calculator.multiply(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(7)
+    })
+
+    it('1개의 양수와 1개의 음의 소수에 대해 곱셈을 하는 경우, 소수점 이하는 버림해서 보여주어야 합니다.', () => {
+      // Given
+      const numA = 1
+      const numB = -2.44444444
+
+      // When
+      calculator.multiply(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-2)
+    })
   })
 
-  it('2개의 숫자에 대해 나눗셈이 가능해야 합니다.', () => {
-    // Given
-    const numA = 6
-    const numB = 3
+  describe('calculator.divide()', () => {
+    it('2개의 양수에 대해 나눗셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = 6
+      const numB = 3
 
-    // When
-    calculator.divide(numA, numB)
+      // When
+      calculator.divide(numA, numB)
 
-    // Then
-    expect(calculator.getValue()).toBe(2)
+      // Then
+      expect(calculator.getValue()).toBe(2)
+    })
+
+    it('2개의 음수에 대해 나눗셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = -6
+      const numB = -3
+
+      // When
+      calculator.divide(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(2)
+    })
+
+    it('1개의 양수와 1개의 음수에 대해 나눗셈이 가능해야 합니다.', () => {
+      // Given
+      const numA = -6
+      const numB = 3
+
+      // When
+      calculator.divide(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(-2)
+    })
+
+    it('1개의 양수와 1개의 양의 소수에 대해 나눗셈을 하는 경우, 소수점 이하는 버림해서 보여주어야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = 3.555555555
+
+      // When
+      calculator.divide(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(0)
+    })
+
+    it('1개의 양수와 1개의 음의 소수에 대해 나눗셈을 하는 경우, 소수점 이하는 버림해서 보여주어야 합니다.', () => {
+      // Given
+      const numA = 2
+      const numB = -3.444444
+
+      // When
+      calculator.divide(numA, numB)
+
+      // Then
+      expect(calculator.getValue()).toBe(0)
+    })
   })
 
   it('계산 결과를 표현할 때 소수점 이하는 버림해서 보여주어야 합니다.', () => {

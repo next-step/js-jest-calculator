@@ -15,7 +15,7 @@ export class Calculator {
       this.#validator = new Validator(firstInputNumber, secondInputNumber);
       this.#validator.checkValueValidation();
     } catch (error) {
-      console.log(error);
+      this.#outputView.printError(error);
     }
   }
 

@@ -6,4 +6,8 @@ export const OutputView = {
 
     console.log(result);
   },
+
+  printError(errorMessage) {
+    console.log(errorMessage);
+  },
 };

@@ -27,56 +27,33 @@ export class Calculator {
     }
   }
 
-  sum(firstInputNumber, secondInputNumber) {
+  #getOperation(operation, firstInputNumber, secondInputNumber) {
     const isValidValue = this.#checkValueValidation(
       firstInputNumber,
       secondInputNumber
     );
 
     if (isValidValue) {
-      this.#result = firstInputNumber + secondInputNumber;
+      this.#result = operation(firstInputNumber, secondInputNumber);
 
       this.#printResult();
     }
+  }
+
+  sum(firstInputNumber, secondInputNumber) {
+    this.#getOperation((a, b) => a + b, firstInputNumber, secondInputNumber);
   }
 
   substract(firstInputNumber, secondInputNumber) {
-    const isValidValue = this.#checkValueValidation(
-      firstInputNumber,
-      secondInputNumber
-    );
-
-    if (isValidValue) {
-      this.#result = firstInputNumber - secondInputNumber;
-
-      this.#printResult();
-    }
+    this.#getOperation((a, b) => a - b, firstInputNumber, secondInputNumber);
   }
 
   multiply(firstInputNumber, secondInputNumber) {
-    const isValidValue = this.#checkValueValidation(
-      firstInputNumber,
-      secondInputNumber
-    );
-
-    if (isValidValue) {
-      this.#result = firstInputNumber * secondInputNumber;
-
-      this.#printResult();
-    }
+    this.#getOperation((a, b) => a * b, firstInputNumber, secondInputNumber);
   }
 
   divide(firstInputNumber, secondInputNumber) {
-    const isValidValue = this.#checkValueValidation(
-      firstInputNumber,
-      secondInputNumber
-    );
-
-    if (isValidValue) {
-      this.#result = firstInputNumber / secondInputNumber;
-
-      this.#printResult();
-    }
+    this.#getOperation((a, b) => a / b, firstInputNumber, secondInputNumber);
   }
 
   #printResult() {

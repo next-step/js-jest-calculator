@@ -23,3 +23,11 @@ describe('계산기 곱셈 테스트', () => {
     expect(calculator.multiply(2, 2)).toBe(4)
   })
 })
+
+describe('계산기 나눗셈 테스트', () => {
+  test('divide(2,2) 의 결과값은 1이다.', () => {
+    const calculator = new Calculator()
+
+    expect(calculator.divide(2, 2)).toBe(1)
+  })
+})

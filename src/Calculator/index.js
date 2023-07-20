@@ -1,10 +1,12 @@
+import { ERROR_BY_VALIDATE } from './constants'
+
 class Calculator {
   sum(a, b) {
     if (a > 999) {
-      throw new Error('숫자 범위가 3자리를 넘을 수 없습니다.')
+      throw new Error(ERROR_BY_VALIDATE.OVER_MAX_NUMBER)
     }
     if (b > 999) {
-      throw new Error('숫자 범위가 3자리를 넘을 수 없습니다.')
+      throw new Error(ERROR_BY_VALIDATE.OVER_MAX_NUMBER)
     }
 
     return a + b

@@ -26,9 +26,42 @@ import { Calculator } from "../src/Calculator";
   })
 
   describe("div", () => {
-    it(`should return 0 when div(1, 2)`, () => {
+    it(`should return 0 when div(2, 1)`, () => {
       const result = Calculator.div(y, x)
       expect(result).toBe(2)
+    })
+  })
+  
+  /// Test for validation
+  describe("validation", () => {
+    it(`should throw Error 'a and b must be less than 1000' when sum(1000, 1)`, () => {
+      expect(() => Calculator.div(1000, 1)).toThrow('a and b must be less than 1000')
+    })
+  })
+
+  describe("validation", () => {
+    it(`should throw Error 'a and b must be greater than -1000' when sum(-1000, 1)`, () => {
+      expect(() => Calculator.div(-1000, 1)).toThrow('a and b must be greater than -1000')
+    })
+  })
+
+  describe("validation", () => {
+    it(`should throw Error 'a and b must be numbers' when sum('10', '2')`, () => {
+      expect(() => Calculator.sum('10', '2')).toThrow('a and b must be numbers')
+    })
+  })
+
+  describe("validation", () => {
+    it('should round off decimal point when sum(1.1, 1.123)', () => {
+      const result = Calculator.sum(1.1, 1.123)
+      expect(result).toBe(2)
+    })
+  })
+
+  describe("validation", () => {
+    it('should round off decimal point when div(1, 3)', () => {
+      const result = Calculator.div(1, 3)
+      expect(result).toBe(0)
     })
   })
   

@@ -11,6 +11,10 @@ export class Calculator {
     this.#result = firstInputNumber - secondInputNumber;
   }
 
+  multiply(firstInputNumber, secondInputNumber) {
+    this.#result = firstInputNumber * secondInputNumber;
+  }
+
   printResult(inputNumber) {
     this.#result = inputNumber;
 

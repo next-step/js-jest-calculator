@@ -57,4 +57,22 @@ describe('계산기 미션', () => {
     expect(calculator.multiply(2.5, 3)).toBe(7);
     expect(calculator.divide(8, 3)).toBe(2);
   });
+
+  test.each([
+    ['1', 2],
+    [1, '2'],
+    [undefined, 2],
+    [1, null],
+    [{}, 5],
+    [[], 3],
+    [true, 2],
+    [1, () => {}],
+  ])('숫자가 아닌 값이 들어올 경우 에러를 발생한다.', (value1, value2) => {
+    const errorMessage = '숫자만 입력 가능합니다.';
+
+    expect(() => calculator.sum(value1, value2)).toThrowError(errorMessage);
+    expect(() => calculator.subtract(value1, value2)).toThrowError(errorMessage);
+    expect(() => calculator.multiply(value1, value2)).toThrowError(errorMessage);
+    expect(() => calculator.divide(value1, value2)).toThrowError(errorMessage);
+  });
 });

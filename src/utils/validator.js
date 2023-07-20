@@ -1,3 +1,6 @@
+import { VALIDATION_CONFIG } from "../constants/validator";
+import { ERROR } from "../constants/error";
+
 export class Validator {
   #firstInputNumber;
   #secondInputNumber;
@@ -8,13 +11,12 @@ export class Validator {
   }
 
   #checkMaxLength() {
-    const MAX_LENGTH = 3;
-
+    const maxLength = VALIDATION_CONFIG.MAX_INPUT_LENGTH;
     if (
-      this.#firstInputNumber.length > MAX_LENGTH ||
-      this.#secondInputNumber.length > MAX_LENGTH
+      this.#firstInputNumber.length > maxLength ||
+      this.#secondInputNumber.length > maxLength
     )
-      throw new Error(`${MAX_LENGTH} 자리를 초과하는 수는 연산할 수 없습니다`);
+      throw new Error(ERROR.OVERFLOW.MAX_LENGTH(maxLength));
   }
 
   checkValueValidation() {

@@ -22,12 +22,12 @@ export class Validator {
   }
 
   #checkEmptyString() {
-    if (this.#firstInputNumber === "" || this.#secondInputNumber === "")
+    if (this.#firstInputNumber === VALIDATION_CONFIG.EMPTY_STRING || this.#secondInputNumber === VALIDATION_CONFIG.EMPTY_STRING)
       throw new Error(ERROR.INPUT.EMPTY_STRING);
   }
 
   #checkArgumentsAmount() {
-    let argumentsAmount = 0;
+    let argumentsAmount = DEFAULT_VALUE.ARGUMENT_AMOUNT;
     for (let argument of this.#arguments) if (argument) argumentsAmount++;
 
     if (argumentsAmount !== VALIDATION_CONFIG.ARGUMENTS_LENGTH)

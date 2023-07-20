@@ -1,30 +1,53 @@
 import MESSAGE from './constants/Message';
-import { isCalculateError, isOrLessThanThreeDigits } from './utils';
+import { CALCULATE_COMMAND } from './constants/commands';
+import {
+  genFloorValue,
+  isCalculateError,
+  isOrLessThanThreeDigits,
+} from './utils';
 
 class Calulator {
-  static add(...args) {
-    const [a, b] = args;
+  #confirmError(args) {
     if (isCalculateError(args)) return MESSAGE.ARG_ERROR;
-    if (isOrLessThanThreeDigits(a, b)) return MESSAGE.DIGIT_ERROR;
-    return a + b;
+    if (isOrLessThanThreeDigits(args)) return MESSAGE.DIGIT_ERROR;
   }
-  static subtract(...args) {
+
+  #calculate(type, args) {
     const [a, b] = args;
-    if (isCalculateError(args)) return MESSAGE.ARG_ERROR;
-    if (isOrLessThanThreeDigits(a, b)) return MESSAGE.DIGIT_ERROR;
-    return a - b;
+    switch (type) {
+      case CALCULATE_COMMAND.ADD:
+        return a + b;
+      case CALCULATE_COMMAND.SUBTRACT:
+        return a - b;
+      case CALCULATE_COMMAND.MULTIPLY:
+        return a * b;
+      case CALCULATE_COMMAND.DIVIDE:
+        return genFloorValue(a / b);
+      default:
+        return;
+    }
   }
-  static multiply(...args) {
-    const [a, b] = args;
-    if (isCalculateError(args)) return MESSAGE.ARG_ERROR;
-    if (isOrLessThanThreeDigits(a, b)) return MESSAGE.DIGIT_ERROR;
-    return a * b;
+
+  #calculateAfterConfirm(args, type) {
+    const errorMessage = this.#confirmError(args);
+    if (errorMessage) return errorMessage;
+    return this.#calculate(type, args);
   }
-  static divide(...args) {
-    const [a, b] = args;
-    if (isCalculateError(args)) return MESSAGE.ARG_ERROR;
-    if (isOrLessThanThreeDigits(a, b)) return MESSAGE.DIGIT_ERROR;
-    return Math.floor(a / b);
+
+  add(...args) {
+    return this.#calculateAfterConfirm(args, CALCULATE_COMMAND.ADD);
+  }
+
+  subtract(...args) {
+    return this.#calculateAfterConfirm(args, CALCULATE_COMMAND.SUBTRACT);
+  }
+
+  multiply(...args) {
+    return this.#calculateAfterConfirm(args, CALCULATE_COMMAND.MULTIPLY);
+  }
+
+  divide(...args) {
+    return this.#calculateAfterConfirm(args, CALCULATE_COMMAND.DIVIDE);
   }
 }
 

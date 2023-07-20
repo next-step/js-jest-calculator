@@ -5,23 +5,29 @@ export class Calculator {
 
   sum(firstInputNumber, secondInputNumber) {
     this.#result = firstInputNumber + secondInputNumber;
+
+    this.#printResult();
   }
 
   substract(firstInputNumber, secondInputNumber) {
     this.#result = firstInputNumber - secondInputNumber;
+
+    this.#printResult();
   }
 
   multiply(firstInputNumber, secondInputNumber) {
     this.#result = firstInputNumber * secondInputNumber;
+
+    this.#printResult();
   }
 
   divide(firstInputNumber, secondInputNumber) {
     this.#result = firstInputNumber / secondInputNumber;
+
+    this.#printResult();
   }
 
-  printResult(inputNumber) {
-    this.#result = inputNumber;
-
+  #printResult() {
     console.log(this.#result);
   }
 }

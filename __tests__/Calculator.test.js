@@ -14,4 +14,11 @@ describe('계산기', () => {
 
     expect(result).toBe(-1);
   });
+
+  it('2개의 숫자에 대해 곱셈이 가능하다', () => {
+    const calculator = new Calculator();
+    const result = calculator.multiply(1, 2);
+
+    expect(result).toBe(2);
+  });
 });

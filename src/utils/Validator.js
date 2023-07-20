@@ -39,10 +39,19 @@ export class Validator {
       throw new Error(ERROR.TYPE.INVALID);
   }
 
+  #checkDecimal() {
+    if (
+      !Number.isInteger(this.#firstInputNumber) ||
+      !Number.isInteger(this.#secondInputNumber)
+    )
+      throw new Error(ERROR.INPUT.DECIMAL);
+  }
+
   checkValueValidation() {
     this.#checkMaxLength();
     this.#checkEmptyString();
     this.#checkArgumentsAmount();
     this.#checkDataType();
+    this.#checkDecimal();
   }
 }

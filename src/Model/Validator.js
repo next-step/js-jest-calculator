@@ -1,5 +1,4 @@
-import { VALIDATION_CONFIG, TYPE } from "../constants/validator";
-import { ERROR } from "../constants/error";
+import { VALIDATION_CONFIG, TYPE, DEFAULT_VALUE, ERROR } from '../constants/';
 
 export class Validator {
   #firstInputNumber;
@@ -22,7 +21,10 @@ export class Validator {
   }
 
   #checkEmptyString() {
-    if (this.#firstInputNumber === VALIDATION_CONFIG.EMPTY_STRING || this.#secondInputNumber === VALIDATION_CONFIG.EMPTY_STRING)
+    if (
+      this.#firstInputNumber === VALIDATION_CONFIG.EMPTY_STRING ||
+      this.#secondInputNumber === VALIDATION_CONFIG.EMPTY_STRING
+    )
       throw new Error(ERROR.INPUT.EMPTY_STRING);
   }
 

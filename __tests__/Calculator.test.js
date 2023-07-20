@@ -28,4 +28,12 @@ describe('계산기', () => {
 
     expect(result).toBe(2);
   });
+
+  it('숫자는 한번에 최대 3자리 수까지만 다룰 수 있다.', () => {
+    const calculator = new Calculator();
+
+    expect(() => calculator.sum(1000, 2000)).toThrow(
+      '숫자는 한 번에 3자리까지 입력 가능합니다.'
+    );
+  });
 });

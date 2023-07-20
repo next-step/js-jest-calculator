@@ -13,4 +13,4 @@ const TYPE = Object.freeze({
   INVALID: "숫자만 입력이 가능합니다.",
 });
 
-export const ERROR = Object.freeze({ OVERFLOW, INPUT });
+export const ERROR = Object.freeze({ OVERFLOW, INPUT, TYPE });

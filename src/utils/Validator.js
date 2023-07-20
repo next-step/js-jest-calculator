@@ -1,4 +1,4 @@
-import { VALIDATION_CONFIG } from "../constants/validator";
+import { VALIDATION_CONFIG, TYPE } from "../constants/validator";
 import { ERROR } from "../constants/error";
 
 export class Validator {
@@ -31,9 +31,18 @@ export class Validator {
       throw new Error(ERROR.OVERFLOW.ARGUMENTS);
   }
 
+  #checkDataType() {
+    if (
+      typeof this.#firstInputNumber !== TYPE.NUMBER ||
+      typeof this.#secondInputNumber !== TYPE.NUMBER
+    )
+      throw new Error(ERROR.TYPE.INVALID);
+  }
+
   checkValueValidation() {
     this.#checkMaxLength();
     this.#checkEmptyString();
     this.#checkArgumentsAmount();
+    this.#checkDataType();
   }
 }

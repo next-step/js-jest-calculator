@@ -1,0 +1,3 @@
+export const CALCULATOR_CONFIGURE = {
+  MAX_NUMBER: 999
+};

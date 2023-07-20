@@ -28,6 +28,8 @@ export class Calculator {
   }
 
   #printResult() {
-    console.log(this.#result);
+    const result = this.#result.toFixed(0);
+
+    console.log(result);
   }
 }

@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <script src="../src//index.js"></script>
+</head>
+
+<body>
+    <div>
+        <label for="input1">첫 번째 숫자:</label>
+        <input type="number" id="input1" oninput="limitToThreeDigits('input1')">
+        <label for="input2">두 번째 숫자:</label>
+        <input type="number" id="input2" oninput="limitToThreeDigits('input2')">
+
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+
+        <p id="result">= 0</p>
+    </div>
+</body>
+
+</html>

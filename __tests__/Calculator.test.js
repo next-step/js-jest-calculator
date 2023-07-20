@@ -15,3 +15,11 @@ describe('계산기 뺄셈 테스트', () => {
     expect(calculator.substract(1, 1)).toBe(0)
   })
 })
+
+describe('계산기 곱셈 테스트', () => {
+  test('multiply(2,2) 의 결과값은 4다.', () => {
+    const calculator = new Calculator()
+
+    expect(calculator.multiply(2, 2)).toBe(4)
+  })
+})

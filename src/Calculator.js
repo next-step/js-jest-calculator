@@ -8,8 +8,18 @@ import {
 
 class Calculator {
   #confirmError(args) {
-    if (isCalculateError(args)) return ERROR_MESSAGE.ARG_ERROR;
-    if (isOrLessThanThreeDigits(args)) return ERROR_MESSAGE.DIGIT_ERROR;
+    try {
+      if (isCalculateError(args)) {
+        const calculateErrorMessage = isCalculateError(args);
+        throw calculateErrorMessage;
+      }
+      if (isOrLessThanThreeDigits(args)) {
+        const digitErrorMessage = isOrLessThanThreeDigits(args);
+        throw digitErrorMessage;
+      }
+    } catch (errorMessage) {
+      throw new Error(errorMessage);
+    }
   }
 
   #calculate(type, args) {
@@ -29,8 +39,7 @@ class Calculator {
   }
 
   #calculateAfterConfirm(args, type) {
-    const errorMessage = this.#confirmError(args);
-    if (errorMessage) return errorMessage;
+    this.#confirmError(args);
     return this.#calculate(type, args);
   }
 

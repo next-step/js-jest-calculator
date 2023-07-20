@@ -3,6 +3,10 @@ export class Calculator {
 
   constructor() {}
 
+  add(firstInputNumber, secondInputNumber) {
+    this.#number = firstInputNumber + secondInputNumber;
+  }
+
   printResult(inputNumber) {
     this.#number = inputNumber;
 

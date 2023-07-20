@@ -1,3 +1,5 @@
+import Calculator from '../src/calculator';
+
 describe('계산기', () => {
   it('2개의 숫자를 더하면 덧셈이 가능하다', () => {
     const a = 1;

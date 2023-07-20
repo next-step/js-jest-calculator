@@ -1,5 +1,5 @@
 import { OutputView } from "../View/outputView";
-import { Validator } from "../utils/validator";
+import { Validator } from "../utils/Validator";
 
 export class Calculator {
   #result;

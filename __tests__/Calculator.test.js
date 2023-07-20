@@ -1,13 +1,10 @@
 import Calculator from '../src/calculator';
 
 describe('계산기', () => {
-  it('2개의 숫자를 더하면 덧셈이 가능하다', () => {
-    const a = 1;
-    const b = 2;
-
+  it('2개의 숫자에 대해 덧셈이 가능하다', () => {
     const calculator = new Calculator();
-    const sumResult = calculator.sum(a, b);
+    const result = calculator.sum(1, 2);
 
-    expect(sumResult).toBe(a + b);
+    expect(result).toBe(3);
   });
 });

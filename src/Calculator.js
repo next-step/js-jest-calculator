@@ -6,7 +6,7 @@ import {
   isOrLessThanThreeDigits,
 } from './utils';
 
-class Calulator {
+class Calculator {
   #confirmError(args) {
     if (isCalculateError(args)) return MESSAGE.ARG_ERROR;
     if (isOrLessThanThreeDigits(args)) return MESSAGE.DIGIT_ERROR;
@@ -51,4 +51,4 @@ class Calulator {
   }
 }
 
-export default Calulator;
+export default Calculator;

@@ -1,4 +1,4 @@
-import MESSAGE from './constants/Message';
+import ERROR_MESSAGE from './constants/message';
 import { CALCULATE_COMMAND } from './constants/commands';
 import {
   genFloorValue,
@@ -8,8 +8,8 @@ import {
 
 class Calculator {
   #confirmError(args) {
-    if (isCalculateError(args)) return MESSAGE.ARG_ERROR;
-    if (isOrLessThanThreeDigits(args)) return MESSAGE.DIGIT_ERROR;
+    if (isCalculateError(args)) return ERROR_MESSAGE.ARG_ERROR;
+    if (isOrLessThanThreeDigits(args)) return ERROR_MESSAGE.DIGIT_ERROR;
   }
 
   #calculate(type, args) {

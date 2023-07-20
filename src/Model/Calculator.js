@@ -1,15 +1,15 @@
 export class Calculator {
-  #number;
+  #result;
 
   constructor() {}
 
-  add(firstInputNumber, secondInputNumber) {
-    this.#number = firstInputNumber + secondInputNumber;
+  sum(firstInputNumber, secondInputNumber) {
+    this.#result = firstInputNumber + secondInputNumber;
   }
 
   printResult(inputNumber) {
-    this.#number = inputNumber;
+    this.#result = inputNumber;
 
-    console.log(this.#number);
+    console.log(this.#result);
   }
 }

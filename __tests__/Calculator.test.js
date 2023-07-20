@@ -24,7 +24,7 @@ describe('계산기', () => {
 
   it('2개의 숫자에 대해 나누기가 가능하다', () => {
     const calculator = new Calculator();
-    const result = calculator.devide(4, 2);
+    const result = calculator.divide(4, 2);
 
     expect(result).toBe(2);
   });

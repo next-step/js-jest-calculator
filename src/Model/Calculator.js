@@ -12,7 +12,11 @@ export class Calculator {
 
   #checkValueValidation(firstInputNumber, secondInputNumber) {
     try {
-      this.#validator = new Validator(firstInputNumber, secondInputNumber);
+      this.#validator = new Validator(
+        firstInputNumber,
+        secondInputNumber,
+        arguments
+      );
       this.#validator.checkValueValidation();
     } catch (error) {
       this.#outputView.printError(error);

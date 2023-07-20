@@ -4,10 +4,12 @@ import { ERROR } from "../constants/error";
 export class Validator {
   #firstInputNumber;
   #secondInputNumber;
+  #arguments;
 
-  constructor(firstInputNumber, secondInputNumber) {
+  constructor(firstInputNumber, secondInputNumber, argumentsData) {
     this.#firstInputNumber = firstInputNumber;
     this.#secondInputNumber = secondInputNumber;
+    this.#arguments = argumentsData;
   }
 
   #checkMaxLength() {
@@ -24,8 +26,14 @@ export class Validator {
       throw new Error(ERROR.INPUT.EMPTY_STRING);
   }
 
+  #checkArgumentsAmount() {
+    if (this.#arguments !== VALIDATION_CONFIG.ARGUMENTS_LENGTH)
+      throw new Error(ERROR.OVERFLOW.ARGUMENTS);
+  }
+
   checkValueValidation() {
     this.#checkMaxLength();
     this.#checkEmptyString();
+    this.#checkArgumentsAmount();
   }
 }

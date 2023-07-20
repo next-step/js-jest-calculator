@@ -1,5 +1,5 @@
 import { Calculator } from "../src/Calculator";
-
+import { ERROR } from "../src/constants";
   const x = 1
   const y = 2
   
@@ -35,19 +35,19 @@ import { Calculator } from "../src/Calculator";
   /// Test for validation
   describe("validation", () => {
     it(`should throw Error 'a and b must be less than 1000' when sum(1000, 1)`, () => {
-      expect(() => Calculator.div(1000, 1)).toThrow('a and b must be less than 1000')
+      expect(() => Calculator.div(1000, 1)).toThrow(ERROR["LESS_THAN_1000"])
     })
   })
 
   describe("validation", () => {
     it(`should throw Error 'a and b must be greater than -1000' when sum(-1000, 1)`, () => {
-      expect(() => Calculator.div(-1000, 1)).toThrow('a and b must be greater than -1000')
+      expect(() => Calculator.div(-1000, 1)).toThrow(ERROR["GREATER_THAN_MINUS_1000"])
     })
   })
 
   describe("validation", () => {
     it(`should throw Error 'a and b must be numbers' when sum('10', '2')`, () => {
-      expect(() => Calculator.sum('10', '2')).toThrow('a and b must be numbers')
+      expect(() => Calculator.sum('10', '2')).toThrow(ERROR["TYPE_NAN"])
     })
   })
 

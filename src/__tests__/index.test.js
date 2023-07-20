@@ -50,4 +50,11 @@ describe('계산기 미션', () => {
     expect(calculator.multiply(num1, num2)).toBe(num1 * num2);
     expect(calculator.divide(num1, num2)).toBe(num1 / num2);
   });
+
+  test('계산 결과를 표현할 때 소수점 이하는 버림한다.', () => {
+    expect(calculator.sum(1, 2.5)).toBe(3);
+    expect(calculator.subtract(3.5, 1)).toBe(2);
+    expect(calculator.multiply(2.5, 3)).toBe(7);
+    expect(calculator.divide(8, 3)).toBe(2);
+  });
 });

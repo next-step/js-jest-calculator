@@ -52,3 +52,5 @@ function limitToThreeDigits(id) {
     const inputValue = inputElement.value;
     inputElement.value = inputValue.replace(/\D/g, '').substring(0, 3);
 }
+
+module.exports = { add, subtract, multiply, divide };

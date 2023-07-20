@@ -10,4 +10,8 @@ describe('계산기 미션', () => {
   test('2개의 숫자에 대해 뺄셈이 가능하다.', () => {
     expect(calculator.subtract(3, 1)).toBe(2);
   });
+
+  test('2개의 숫자에 대해 곱셈이 가능하다.', () => {
+    expect(calculator.multiply(2, 4)).toBe(8);
+  });
 });

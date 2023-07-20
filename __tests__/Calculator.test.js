@@ -2,7 +2,7 @@ import { ERROR_MESSAGE } from '../src/constants/message'
 import { Calculator } from '../src/app'
 
 
-describe.skip('Calculator - Feature', () => {
+describe('Calculator - Feature', () => {
   let calculator
 
   beforeEach(() => {
@@ -69,7 +69,7 @@ describe.skip('Calculator - Feature', () => {
   })
  })
 
- describe.skip('Calculator - Validator', () => {
+ describe('Calculator - Validator', () => {
   let calculator
 
   beforeEach(() => {

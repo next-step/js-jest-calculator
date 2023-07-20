@@ -1,7 +1,12 @@
+import { OutputView } from "../View/outputView";
+
 export class Calculator {
   #result;
+  #view;
 
-  constructor() {}
+  constructor() {
+    this.#view = OutputView;
+  }
 
   sum(firstInputNumber, secondInputNumber) {
     this.#result = firstInputNumber + secondInputNumber;
@@ -28,8 +33,6 @@ export class Calculator {
   }
 
   #printResult() {
-    const result = this.#result.toFixed(0);
-
-    console.log(result);
+    this.#view.printResult(this.#result);
   }
 }

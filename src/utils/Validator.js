@@ -19,7 +19,13 @@ export class Validator {
       throw new Error(ERROR.OVERFLOW.MAX_LENGTH(maxLength));
   }
 
+  #checkEmptyString() {
+    if (this.#firstInputNumber === "" || this.#secondInputNumber === "")
+      throw new Error(ERROR.INPUT.EMPTY_STRING);
+  }
+
   checkValueValidation() {
     this.#checkMaxLength();
+    this.#checkEmptyString();
   }
 }

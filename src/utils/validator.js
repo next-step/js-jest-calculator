@@ -13,7 +13,8 @@ export const isValidNumbers = (...numbers) => {
 }
 
 export const isValidDigitByNumbers = (digit, ...numbers) => {
-  const isValid = numbers.every(number => String(number).length < digit)
+  const isValid = numbers.every(number => String(number).includes('.')
+    ? true : String(number).replace('-','').length < digit)
 
   if (!isValid) {
     throw new Error(ERROR_MESSAGE.INVALID_DIGIT)

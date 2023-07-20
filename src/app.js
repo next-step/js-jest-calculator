@@ -2,7 +2,7 @@ import { LIMIT_DIGIT } from './constants/app'
 import { ERROR_MESSAGE } from './constants/message'
 import { isNumber, isValidDigitByNumbers } from './utils/validator'
 import { calculatorHandler } from './handler'
-import { sum, subtract, multiply, divide } from './utils/math'
+import { sum, subtract, multiply, divide, floor } from './utils/math'
 
 export function Calculator() {
   if (!new.target) {
@@ -10,7 +10,7 @@ export function Calculator() {
   }
 
   this.value = 0
-  this.getValue = () => Math.floor(this.value)
+  this.getValue = () => floor(this.value)
   this.setValue = (num) => {
     if (!isNumber(num)) {
       throw new Error(ERROR_MESSAGE.INVALID_NUMBER)

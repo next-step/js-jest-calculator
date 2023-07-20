@@ -10,3 +10,5 @@ export const isOrLessThanThreeDigits = (args) => {
   const isOrLessThanThreeDigits = args.some((number) => number > 999);
   return Validator.isError(isOrLessThanThreeDigits, MESSAGE.DIGIT_ERROR);
 };
+
+export const genFloorValue = (value) => Math.floor(value);

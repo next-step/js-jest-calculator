@@ -82,4 +82,85 @@
 
 ## 테스트 요구사항
 
-기능 요구사항에 제시된 항목에 대해 테스트 케이스를 만든다.
+- [x] 기능 요구사항에 제시된 항목에 대해 테스트 케이스를 만든다.
+
+---
+
+- #checkValueValidation에서 에러가 발생할 경우, Error를 던지고 상위 바운더리에서 이를 catch하여 처리할 수 있도록 두는 것이 나을지, #checkValueValidation 내부에서 에러를 처리할지 고민하다가, 후자를 택했습니다. 에러의 유무에따라 해당 스코프에서 값의 유효성에 대한 boolean 값을 return하는 방식으로 변경했습니다.
+
+## 이전
+
+```js
+  #checkValueValidation(firstInputNumber, secondInputNumber) {
+    this.#validator = new Validator(
+      firstInputNumber,
+      secondInputNumber,
+      arguments
+    );
+    this.#validator.checkValueValidation();
+  }
+
+  sum(firstInputNumber, secondInputNumber) {
+    this.#checkValueValidation(firstInputNumber, secondInputNumber);
+    this.#result = firstInputNumber + secondInputNumber;
+
+    this.#printResult();
+  }
+```
+
+## 이후
+
+```js
+  #checkValueValidation(firstInputNumber, secondInputNumber) {
+    try {
+      this.#validator = new Validator(
+        firstInputNumber,
+        secondInputNumber,
+        arguments
+      );
+      this.#validator.checkValueValidation();
+
+      return true;
+    } catch (error) {
+      this.#outputView.printError(error.message);
+
+      return false;
+    }
+  }
+
+  sum(firstInputNumber, secondInputNumber) {
+    const isValidValue = this.#checkValueValidation(
+      firstInputNumber,
+      secondInputNumber
+    );
+
+    if (isValidValue) {
+      this.#result = firstInputNumber + secondInputNumber;
+
+      this.#printResult();
+    }
+  }
+```
+
+그에 따라 테스트코드도 다음과 같이 변경되었습니다.
+
+```js
+test("입력값이 소수이면 오류가 발생해야 한다", () => {
+  expect(() => {
+    calculator.sum(1.2, 2);
+  }).toThrow();
+});
+```
+
+```js
+test("입력값이 소수이면 오류가 발생해야 한다", () => {
+  calculator.sum(1.2, 2);
+  expect(logSpy).toHaveBeenCalledWith(ERROR.INPUT.DECIMAL);
+});
+```
+
+여기서 궁금한 점이 하나 생겼습니다!
+
+- 이런 에러의 처리의 책임은 어떤 객체에게 있는지 궁금합니다. checkValueValidation에서 발생한 에러는 checkValueValidation 상위 스코프로 번져가지 않게 해당 스코프 안에서 처리해야하는지, 또는 ReactErrorBoundary와 같이, 상위 스코프에서 묶어서 처리하는 방식이 괜찮은지 궁금증이 발생했습니다!
+
+우선, 득실을 따져가며 상황에 따라 다르게 처리하는 것이 맞아보이지만, 현재 상황에선 코드가 조금 지저분해지고 테스트코드를 조금 바꿔야하더라도 해당 에러의 책임을 처리하는 것은 해당 스코프에 있다고 판단하여 후자의 방식을 채택하게 되었습니다!:)

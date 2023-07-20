@@ -6,7 +6,7 @@ export const isCalculateError = (arg) => {
   return Validator.isError(!isTwoArguments, MESSAGE.ARG_ERROR);
 };
 
-export const isOrLessThanThreeDigits = (a, b) => {
-  const isOrLessThanThreeDigits = [a, b].some((number) => number > 999);
+export const isOrLessThanThreeDigits = (args) => {
+  const isOrLessThanThreeDigits = args.some((number) => number > 999);
   return Validator.isError(isOrLessThanThreeDigits, MESSAGE.DIGIT_ERROR);
 };

@@ -7,53 +7,59 @@ export class Calculator {
   constructor() {}
 
   add(a, b) {
-    this.#checkNumber(a, b);
+    this.#checkTypeIsNumber(a, b);
     this.result = a + b;
   }
   minus(a, b) {
-    this.#checkNumber(a, b);
+    this.#checkTypeIsNumber(a, b);
     this.result = a - b;
   }
   multiply(a, b) {
-    this.#checkNumber(a, b);
+    this.#checkTypeIsNumber(a, b);
     this.result = a * b;
   }
   divide(a, b) {
-    this.#checkNumber(a, b);
+    this.#checkTypeIsNumber(a, b);
     this.result = a / b;
   }
 
   pressNumber(aNumber) {
-    if (!DIGITS.includes(aNumber)) {
+    if (this.#checkIsDigit(aNumber)) {
       throw Error(ERROR_MESSAGES.PRESS_ONLY_NUMBER);
     }
-
-    let existNumber = this.operator ? this.b : this.a;
-    existNumber = (existNumber ?? "") + String(aNumber);
-
-    if (existNumber.length > 3) {
+    if (this.#checkIsExceedMaximumInputNumbers(aNumber)) {
       throw Error(ERROR_MESSAGES.EXCEED_MAXIMUM_INPUT_NUMBERS);
     }
-
     if (this.operator) {
-      this.b = +existNumber;
-    } else {
-      this.a = +existNumber;
+      this.b = Number((this.b || "") + String(aNumber));
+      return;
     }
+
+    this.a = Number((this.a || "") + String(aNumber));
   }
 
   pressOperator(aOperator) {
-    if (!["*", "/", "+", "%", "-"].includes(aOperator)) {
+    if (this.#checkIsOperator(aOperator)) {
       throw Error(ERROR_MESSAGES.PRESS_ONLY_OPERATOR);
     }
+    
     this.operator = aOperator;
+  }
+
+  pressResult() {
+    this.result = {
+      "+": this.add,
+      "-": this.minus,
+      "*": this.multiply,
+      "/": this.divide,
+    }[this.operator](this.a, this.b);
   }
 
   showResult() {
     return Math.floor(this.result);
   }
 
-  #checkNumber(...numbers) {
+  #checkTypeIsNumber(...numbers) {
     for (let aNumber of numbers) {
       if (typeof aNumber !== "number") {
         throw Error(ERROR_MESSAGES.NOT_TYPE_NUMBER);
@@ -61,6 +67,21 @@ export class Calculator {
     }
 
     return numbers;
+  }
+
+  #checkIsOperator(aOperator) {
+    return !OPERATORS.includes(aOperator);
+  }
+
+  #checkIsDigit(aNumber) {
+    return !DIGITS.includes(aNumber);
+  }
+
+  #checkIsExceedMaximumInputNumbers() {
+    return (
+      (String(this.a || "").length >= 3 && !this.operator) ||
+      (String(this.b || "").length >= 3 && this.operator)
+    );
   }
 }
 
@@ -70,6 +91,8 @@ const ERROR_MESSAGES = {
   PRESS_ONLY_NUMBER: "숫자를 입력해주세요.",
   PRESS_ONLY_OPERATOR: "연산자를 입력해주세요.",
 };
+
+const OPERATORS = ["*", "/", "+", "%", "-"];
 
 const DIGITS = Array(10)
   .fill(0)

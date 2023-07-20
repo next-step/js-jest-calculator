@@ -1,22 +1,22 @@
 export default class Calculator {
   sum(num1, num2) {
     this.validateOverThreeDigits([num1, num2]);
-    return num1 + num2;
+    return Math.floor(num1 + num2);
   }
 
   subtract(num1, num2) {
     this.validateOverThreeDigits([num1, num2]);
-    return num1 - num2;
+    return Math.floor(num1 - num2);
   }
 
   multiply(num1, num2) {
     this.validateOverThreeDigits([num1, num2]);
-    return num1 * num2;
+    return Math.floor(num1 * num2);
   }
 
   divide(num1, num2) {
     this.validateOverThreeDigits([num1, num2]);
-    return num1 / num2;
+    return Math.floor(num1 / num2);
   }
 
   validateOverThreeDigits(numbers) {

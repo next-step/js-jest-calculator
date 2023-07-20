@@ -18,37 +18,65 @@ export class Calculator {
         arguments
       );
       this.#validator.checkValueValidation();
+
+      return true;
     } catch (error) {
-      this.#outputView.printError(error);
+      this.#outputView.printError(error.message);
+
+      return false;
     }
   }
 
   sum(firstInputNumber, secondInputNumber) {
-    this.#checkValueValidation(firstInputNumber, secondInputNumber);
-    this.#result = firstInputNumber + secondInputNumber;
+    const isValidValue = this.#checkValueValidation(
+      firstInputNumber,
+      secondInputNumber
+    );
 
-    this.#printResult();
+    if (isValidValue) {
+      this.#result = firstInputNumber + secondInputNumber;
+
+      this.#printResult();
+    }
   }
 
   substract(firstInputNumber, secondInputNumber) {
-    this.#checkValueValidation(firstInputNumber, secondInputNumber);
-    this.#result = firstInputNumber - secondInputNumber;
+    const isValidValue = this.#checkValueValidation(
+      firstInputNumber,
+      secondInputNumber
+    );
 
-    this.#printResult();
+    if (isValidValue) {
+      this.#result = firstInputNumber - secondInputNumber;
+
+      this.#printResult();
+    }
   }
 
   multiply(firstInputNumber, secondInputNumber) {
-    this.#checkValueValidation(firstInputNumber, secondInputNumber);
-    this.#result = firstInputNumber * secondInputNumber;
+    const isValidValue = this.#checkValueValidation(
+      firstInputNumber,
+      secondInputNumber
+    );
 
-    this.#printResult();
+    if (isValidValue) {
+      this.#result = firstInputNumber * secondInputNumber;
+
+      this.#printResult();
+    }
   }
 
   divide(firstInputNumber, secondInputNumber) {
-    this.#checkValueValidation(firstInputNumber, secondInputNumber);
-    this.#result = firstInputNumber / secondInputNumber;
+    const isValidValue = this.#checkValueValidation(
+      firstInputNumber,
+      secondInputNumber
+    );
 
-    this.#printResult();
+    if (isValidValue) {
+      this.#result = firstInputNumber / secondInputNumber;
+
+      this.#printResult();
+    }
   }
 
   #printResult() {

@@ -1,4 +1,5 @@
 import { Calculator } from "../src/Model/Calculator";
+import { ERROR } from "../src/constants/error";
 
 describe("Calculator test", () => {
   let calculator;
@@ -45,30 +46,22 @@ describe("Calculator test", () => {
 
   // 4단계 테스트
   test("입력값이 빈 문자열이면 오류가 발생해야 한다", () => {
-    expect(() => {
-      calculator.sum("", 1);
-    }).toThrow();
+    calculator.sum("", 1);
+    expect(logSpy).toHaveBeenCalledWith(ERROR.INPUT.EMPTY_STRING);
   });
 
   test("입력값이 2개가 아니면 오류가 발생해야 한다", () => {
-    expect(() => {
-      calculator.sum(1);
-    }).toThrow();
-
-    expect(() => {
-      calculator.divide(1, 2, 3);
-    }).toThrow();
+    calculator.sum(1);
+    expect(logSpy).toHaveBeenCalledWith(ERROR.OVERFLOW.ARGUMENTS);
   });
 
   test("데이터 타입이 숫자가 아니면 오류가 발생해야 한다", () => {
-    expect(() => {
-      calculator.sum("1", 2);
-    }).toThrow();
+    calculator.sum("1", 2);
+    expect(logSpy).toHaveBeenCalledWith(ERROR.TYPE.INVALID);
   });
 
   test("입력값이 소수이면 오류가 발생해야 한다", () => {
-    expect(() => {
-      calculator.sum(1.2, 2);
-    }).toThrow();
+    calculator.sum(1.2, 2);
+    expect(logSpy).toHaveBeenCalledWith(ERROR.INPUT.DECIMAL);
   });
 });

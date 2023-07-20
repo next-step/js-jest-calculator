@@ -27,7 +27,10 @@ export class Validator {
   }
 
   #checkArgumentsAmount() {
-    if (this.#arguments !== VALIDATION_CONFIG.ARGUMENTS_LENGTH)
+    let argumentsAmount = 0;
+    for (let argument of this.#arguments) if (argument) argumentsAmount++;
+
+    if (argumentsAmount !== VALIDATION_CONFIG.ARGUMENTS_LENGTH)
       throw new Error(ERROR.OVERFLOW.ARGUMENTS);
   }
 
@@ -48,9 +51,9 @@ export class Validator {
   }
 
   checkValueValidation() {
-    this.#checkMaxLength();
     this.#checkEmptyString();
     this.#checkArgumentsAmount();
+    this.#checkMaxLength();
     this.#checkDataType();
     this.#checkDecimal();
   }

@@ -1,3 +1,4 @@
 export const CALCULATOR_CONFIGURE = {
-  MAX_NUMBER: 999
+  MAX_NUMBER: 999,
+  MIN_NUMBER: -999
 };

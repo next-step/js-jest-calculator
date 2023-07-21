@@ -1,13 +1,21 @@
+import Validator from './validator';
+
 class Calculator {
-  static calculate(first, second, operation) {}
+  static calculate(first, second, operation) {
+    try {
+      Validator.validate(first, second, operation);
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 
-  #sum(first, second) {}
+  static sum(first, second) {}
 
-  #subtract(first, second) {}
+  static subtract(first, second) {}
 
-  #multiply(first, second) {}
+  static multiply(first, second) {}
 
-  #divide(first, second) {}
+  static divide(first, second) {}
 }
 
 export default Calculator;

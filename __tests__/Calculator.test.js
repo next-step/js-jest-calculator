@@ -2,35 +2,35 @@ import Calculator from '../src/calculator.js';
 import { OPERATIONS } from '../src/constants/operations.js';
 import { ERROR_MESSAGE } from '../src/constants/message.js';
 
-// describe('덧셈 테스트', () => {
-//   test('1 + 1은 2이다.', () => {
-//     expect(Calculator.calculate(1, 1, OPERATIONS.PLUS)).toBe(2);
-//   });
+describe('덧셈 테스트', () => {
+  test('1 + 1은 2이다.', () => {
+    expect(Calculator.calculate(1, 1, OPERATIONS.PLUS)).toBe(2);
+  });
 
-//   test('100 + 100은 200이다.', () => {
-//     expect(Calculator.calculate(100, 100, OPERATIONS.PLUS)).toBe(200);
-//   });
+  test('100 + 100은 200이다.', () => {
+    expect(Calculator.calculate(100, 100, OPERATIONS.PLUS)).toBe(200);
+  });
 
-//   test('60 + -20은 40이다.', () => {
-//     expect(Calculator.calculate(60, -20, OPERATIONS.PLUS)).toBe(40);
-//   });
+  test('60 + -20은 40이다.', () => {
+    expect(Calculator.calculate(60, -20, OPERATIONS.PLUS)).toBe(40);
+  });
 
-//   test('-60 + 20은 -40이다.', () => {
-//     expect(Calculator.calculate(-60, 20, OPERATIONS.PLUS)).toBe(-40);
-//   });
+  test('-60 + 20은 -40이다.', () => {
+    expect(Calculator.calculate(-60, 20, OPERATIONS.PLUS)).toBe(-40);
+  });
 
-//   test('-60 + -20은 -80이다.', () => {
-//     expect(Calculator.calculate(-60, -20, OPERATIONS.PLUS)).toBe(-80);
-//   });
+  test('-60 + -20은 -80이다.', () => {
+    expect(Calculator.calculate(-60, -20, OPERATIONS.PLUS)).toBe(-80);
+  });
 
-//   test('10.134 + 2.45는 12이다.', () => {
-//     expect(Calculator.calculate(10.134, 2.45, OPERATIONS.PLUS)).toBe(12);
-//   });
+  test('10.134 + 2.45는 12이다.', () => {
+    expect(Calculator.calculate(10.134, 2.45, OPERATIONS.PLUS)).toBe(12);
+  });
 
-//   test('-10.45 + -20.12은 -30이다.', () => {
-//     expect(Calculator.calculate(-60, -20, OPERATIONS.PLUS)).toBe(-30);
-//   });
-// });
+  test('-10.45 + -20.12은 -30이다.', () => {
+    expect(Calculator.calculate(-10.45, -20.12, OPERATIONS.PLUS)).toBe(-30);
+  });
+});
 
 // describe('뺄셈 테스트', () => {
 //   test('2 - 1은 1이다.', () => {

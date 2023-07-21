@@ -19,7 +19,7 @@ class Calculator {
   substract(a, b) {
     this.validate(a, b)
 
-    return a - b
+    return Math.floor(a - b)
   }
 
   multiply(a, b) {

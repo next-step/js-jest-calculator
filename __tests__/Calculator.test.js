@@ -25,6 +25,9 @@ describe('계산기 곱셈 테스트', () => {
   test('multiply(2,2) 의 결과값은 4다.', () => {
     expect(calculator.multiply(2, 2)).toBe(4)
   })
+  test('multiply(1.5, 3) 의 결과값은 0이다.', () => {
+    expect(calculator.multiply(1.5, 3)).toBe(4)
+  })
 })
 
 describe('계산기 나눗셈 테스트', () => {

@@ -14,6 +14,11 @@ class Calculator {
         case OPERATIONS.MINUS:
           result = this.subtract(first, second);
           break;
+        case OPERATIONS.TIMES:
+        case OPERATIONS.TIMES_CROSS:
+        case OPERATIONS.TIMES_CROSS_UPPERCASE:
+          result = this.multiply(first, second);
+          break;
         default:
           return null;
       }
@@ -32,7 +37,9 @@ class Calculator {
     return first - second;
   }
 
-  static multiply(first, second) {}
+  static multiply(first, second) {
+    return first * second;
+  }
 
   static divide(first, second) {}
 }

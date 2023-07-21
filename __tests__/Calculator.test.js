@@ -62,39 +62,39 @@ describe('뺄셈 테스트', () => {
   });
 });
 
-// describe('곱셈 테스트', () => {
-//   test('2 / 2은 4이다.', () => {
-//     expect(Calculator.calculate(2, 1, OPERATIONS.TIMES)).toBe(4);
-//   });
+describe('곱셈 테스트', () => {
+  test('2 * 2은 4이다.', () => {
+    expect(Calculator.calculate(2, 2, OPERATIONS.TIMES)).toBe(4);
+  });
 
-//   test('200 / 10은 2000이다.', () => {
-//     expect(Calculator.calculate(100, 100, OPERATIONS.TIMES)).toBe(2000);
-//   });
+  test('200 * 10은 2000이다.', () => {
+    expect(Calculator.calculate(200, 10, OPERATIONS.TIMES)).toBe(2000);
+  });
 
-//   test('60 / -2은 -120이다.', () => {
-//     expect(Calculator.calculate(60, -2, OPERATIONS.TIMES)).toBe(-120);
-//   });
+  test('60 * -2은 -120이다.', () => {
+    expect(Calculator.calculate(60, -2, OPERATIONS.TIMES)).toBe(-120);
+  });
 
-//   test('-60 / 2은 -120이다.', () => {
-//     expect(Calculator.calculate(-60, 2, OPERATIONS.TIMES)).toBe(-120);
-//   });
+  test('-60 * 2은 -120이다.', () => {
+    expect(Calculator.calculate(-60, 2, OPERATIONS.TIMES)).toBe(-120);
+  });
 
-//   test('-60 / -2은 120이다.', () => {
-//     expect(Calculator.calculate(-60, -20, OPERATIONS.TIMES)).toBe(120);
-//   });
+  test('-60 * -2은 120이다.', () => {
+    expect(Calculator.calculate(-60, -2, OPERATIONS.TIMES)).toBe(120);
+  });
 
-//   test('10.134 / 2.45는 24이다.', () => {
-//     expect(Calculator.calculate(10.134, 2.45, OPERATIONS.TIMES)).toBe(24);
-//   });
+  test('10.134 * 2.45는 24이다.', () => {
+    expect(Calculator.calculate(10.134, 2.45, OPERATIONS.TIMES)).toBe(24);
+  });
 
-//   test('x 기호 테스트 (2 x 2 = 4)', () => {
-//     expect(Calculator.calculate(2, 2, OPERATIONS.TIMES_CROSS)).toBe(4);
-//   });
+  test('x 기호 테스트 (2 x 2 = 4)', () => {
+    expect(Calculator.calculate(2, 2, OPERATIONS.TIMES_CROSS)).toBe(4);
+  });
 
-//   test('X 기호 테스트 (2 X 2 = 4)', () => {
-//     expect(Calculator.calculate(2, 2, OPERATIONS.TIMES_CROSS.toUpperCase())).toBe(4);
-//   });
-// });
+  test('X 기호 테스트 (2 X 2 = 4)', () => {
+    expect(Calculator.calculate(2, 2, OPERATIONS.TIMES_CROSS_UPPERCASE)).toBe(4);
+  });
+});
 
 describe('유효성 검사 테스트', () => {
   test('피연산자를 입력하지 않은 경우 ("" + "")', () => {

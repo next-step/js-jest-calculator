@@ -70,16 +70,17 @@ describe('Calculator', () => {
 
   describe('2개의 숫자에 대해 곱셈이 가능하다.', () => {
     test.each([
-      [3, 2, 1],
-      [-2, 3, -5],
-      [-2, -3, 1],
-      [0.5, 0.5, 0],
-      [0.555555555555, 1.534455, 0],
-      [-3.555555555555, -1.534455, -2],
+      [3, 2, 6],
+      [-2, 3, -6],
+      [-2, -3, 6],
+      [0.5, 13.4, 6],
+      [0.555555555555, 15.534455, 8],
+      [-3.555555555555, -1.534455, 5],
+      [-3.555555555555, 1.534455, -5],
     ])('calculator.multiple(%s, %s) => %s', (num1, num2, expected) => {
       calculator.multiple(num1, num2)
 
-      expect(calculator.value).toBe(6)
+      expect(calculator.value).toBe(expected)
     })
   })
 

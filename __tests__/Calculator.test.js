@@ -97,6 +97,25 @@ describe('곱셈 테스트', () => {
 });
 
 describe('유효성 검사 테스트', () => {
+  test('피연산자를 입력하지 않은 경우 ("" + "")', () => {
+    expect(Calculator.calculate(undefined, undefined, OPERATIONS.PLUS)).toThrowError(ERROR_MESSAGE.INVALID_FORMULA);
+    expect(Calculator.calculate('', '', OPERATIONS.PLUS)).toThrowError(ERROR_MESSAGE.INVALID_FORMULA);
+  });
+
+  test('연산자를 입력하지 않은 경우 (300 "" 100)', () => {
+    expect(Calculator.calculate(300, 100, undefined)).toThrowError(ERROR_MESSAGE.INVALID_FORMULA);
+    expect(Calculator.calculate(300, 100, '')).toThrowError(ERROR_MESSAGE.INVALID_FORMULA);
+  });
+
+  test('둘다 입력하지 않은 경우 ("" "" "")', () => {
+    expect(Calculator.calculate(undefined, undefined, undefined)).toThrowError(ERROR_MESSAGE.INVALID_FORMULA);
+    expect(Calculator.calculate('', '', '')).toThrowError(ERROR_MESSAGE.INVALID_FORMULA);
+  });
+
+  test('올바르지 않은 피연산자를 입력한 경우 (버그 + 입니다)', () => {
+    expect(Calculator.calculate('버그', '입니다', OPERATIONS.PLUS)).toThrowError(ERROR_MESSAGE.INVALID_OPERAND);
+  });
+
   test('입력값이 세자릿수를 넘는 경우 (1000 + 1000)', () => {
     expect(Calculator.calculate(1000, 1000, OPERATIONS.PLUS)).toThrowError(ERROR_MESSAGE.OVER_MAX_DIGIT);
   });
@@ -129,7 +148,8 @@ describe('유효성 검사 테스트', () => {
     expect(Calculator.calculate('버그', '입니다', OPERATIONS.PLUS)).toThrowError(ERROR_MESSAGE.INVALID_OPERAND);
   });
 
-  test('여러 에러 중첩시 피연산자 => 연산자 => 자릿수 순으로 출력', () => {
+  test('여러 에러 중첩시 미입력 => 피연산자 => 연산자 => 자릿수 순으로 출력', () => {
+    expect(Calculator.calculate('', 3000, '🐞')).toThrowError(ERROR_MESSAGE.INVALID_FORMULA);
     expect(Calculator.calculate('버그', '입니다', '🐞')).toThrowError(ERROR_MESSAGE.INVALID_OPERAND);
     expect(Calculator.calculate('저는 버그', 2000, OPERATIONS.PLUS)).toThrowError(ERROR_MESSAGE.INVALID_OPERAND);
     expect(Calculator.calculate('저는 버그', '입니다', OPERATIONS.PLUS)).toThrowError(ERROR_MESSAGE.INVALID_OPERAND);

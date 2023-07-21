@@ -1,11 +1,8 @@
 import { isValidNumbers } from './validator'
 
 export const floor = (num) => {
-  const isNegative = num < 0
-  const decimalNumber = new RegExp(/[0-9]+\./).exec(Math.abs(num))
-  const result = decimalNumber ? Number(decimalNumber[0].replace('.', '')) : Math.abs(num)
-
-  return (isNegative && result !== 0) ? -result : result
+  const result = Math.trunc(num)
+  return result === 0 ? 0 : result
 }
 
 export const sum = (numA, numB) => {

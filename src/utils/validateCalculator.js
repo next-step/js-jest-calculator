@@ -5,7 +5,7 @@ const isValueInRange = (operands, max, min) => operands.every((operand) => opera
 const isValidNumber = (operands) => operands.every((operand) => typeof operand === 'number' && !Number.isNaN(operand));
 
 export const validateCalculator = (operator, ...operands) => {
-  const { NOT_NUMBER, OVER_MAX_LENGTH, REQUIRED_NUMBER, NOT_DIVIDE_ZERO } = ERROR_MESSAGE;
+  const { NOT_NUMBER, OVER_RANGE, REQUIRED_NUMBER, NOT_DIVIDE_ZERO } = ERROR_MESSAGE;
   const { MAX_NUMBER, MIN_NUMBER } = CALCULATOR_CONFIGURE;
 
   if (operands.length !== 2) {
@@ -17,7 +17,7 @@ export const validateCalculator = (operator, ...operands) => {
   }
 
   if (!isValueInRange(operands, MAX_NUMBER, MIN_NUMBER)) {
-    throw OVER_MAX_LENGTH;
+    throw OVER_RANGE;
   }
 
   if (operator.name === 'divide' && operands[1] === 0) {

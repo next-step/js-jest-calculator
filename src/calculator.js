@@ -1,23 +1,23 @@
-import { overThreeDigits } from './validation';
+import { overThreeLength } from './validation';
 
 export default class Calculator {
   sum(...args) {
-    overThreeDigits(args);
+    overThreeLength(args);
     return Math.floor(args.reduce((prev, curr) => prev + curr));
   }
 
   subtract(...args) {
-    overThreeDigits(args);
+    overThreeLength(args);
     return Math.floor(args.reduce((prev, curr) => prev - curr));
   }
 
   multiply(...args) {
-    overThreeDigits(args);
+    overThreeLength(args);
     return Math.floor(args.reduce((prev, curr) => prev * curr));
   }
 
   divide(...args) {
-    overThreeDigits(args);
+    overThreeLength(args);
     return Math.floor(args.reduce((prev, curr) => prev / curr));
   }
 }

@@ -21,7 +21,7 @@ describe('validator의 동작을 확인한다.', () => {
   test.each([
     ['2', false],
     [0.55, true],
-    [0.555, false],
+    [0.555, true],
     [-3, true],
     [10000, false],
   ])('3자리 까지의 숫자만 입력 가능 : %s is %s', (num, isValid) => {

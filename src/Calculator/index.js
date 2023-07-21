@@ -29,6 +29,8 @@ class Calculator {
   }
 
   divide(a, b) {
+    this.validate(a, b)
+
     return a / b
   }
 }

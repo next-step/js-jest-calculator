@@ -37,7 +37,7 @@ describe('계산기', () => {
     test.each([
       [4, 2, 2],
       [0, 1, 0],
-      [7, -2, -3.5],
+      [7, -2, -3],
       [-999, 999, -1],
       [-1, -10, 0],
     ])('divide(%f, %f)', (a, b, expected) => {
@@ -67,16 +67,13 @@ describe('계산기', () => {
     describe('계산 결과를 표현할 때 소수점 이하는 버림한다', () => {
       const calculator = new Calculator(new BasicOperation());
 
-      test.each([[1, 1, 6, 2][(-10, -10.4, -20)]])(
-        'sum(%d, %d)',
-        (a, b, expected) => {
-          const result = calculator.operation.sum(a, b);
-          expect(result).toBe(expected);
-        }
-      );
+      test.each([[1.1, 6.2, 7]])('sum(%d, %d)', (a, b, expected) => {
+        const result = calculator.operation.sum(a, b);
+        expect(result).toBe(expected);
+      });
 
       test.each([
-        [-1.1, -1.22, -2],
+        [-1.1, 1.22, -2],
         [1.99, 2.4, 0],
       ])('subtract(%f, %f)', (a, b, expected) => {
         const result = calculator.operation.subtract(a, b);

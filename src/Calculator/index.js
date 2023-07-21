@@ -1,13 +1,17 @@
 import { ERROR_BY_VALIDATE, MAX_NUMBER } from './constants'
 
 class Calculator {
-  sum(a, b) {
+  validate(a, b) {
     if (a > MAX_NUMBER) {
       throw new Error(ERROR_BY_VALIDATE.OVER_MAX_NUMBER)
     }
     if (b > MAX_NUMBER) {
       throw new Error(ERROR_BY_VALIDATE.OVER_MAX_NUMBER)
     }
+  }
+
+  sum(a, b) {
+    this.validate(a, b)
 
     return a + b
   }

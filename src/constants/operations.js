@@ -5,7 +5,7 @@ export const OPERATIONS = Object.freeze({
 
   TIMES: '*',
   TIMES_CROSS: 'x',
-  TIMES_CROSS_UPPERCASE: 'x',
+  TIMES_CROSS_UPPERCASE: 'X',
 
   DIVISION: '÷',
   DIVISION_SLASH: '/',

@@ -1,6 +1,6 @@
 export default class Calculator {
-  operatoin;
-  constructor(operatoin) {
-    this.operatoin = operatoin;
+  operation;
+  constructor(operation) {
+    this.operation = operation;
   }
 }

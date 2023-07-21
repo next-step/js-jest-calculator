@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from '../constants/message'
+import { floor } from './math'
 
 export const isNumber = (num) => Object.prototype.toString.call(num) === '[object Number]'
 
@@ -12,9 +13,8 @@ export const isValidNumbers = (...numbers) => {
   return true
 }
 
-export const isValidDigitByNumbers = (digit, ...numbers) => {
-  const isValid = numbers.every(number => String(number).includes('.')
-    ? true : String(number).replace('-','').length <= digit)
+export const isValidDigitByNumbers = (limitDigit, ...numbers) => {
+  const isValid = numbers.every(number => String(Math.abs(floor(number))).length <= limitDigit)
 
   if (!isValid) {
     throw new Error(ERROR_MESSAGE.INVALID_DIGIT)

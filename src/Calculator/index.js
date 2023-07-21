@@ -23,6 +23,8 @@ class Calculator {
   }
 
   multiply(a, b) {
+    this.validate(a, b)
+
     return a * b
   }
 

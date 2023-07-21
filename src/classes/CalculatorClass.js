@@ -1,23 +1,32 @@
 class Calculator {
-  constructor(number1, number2, operator) {
+  constructor(number1, number2, calculatedNumber) {
     this.number1 = number1;
     this.number2 = number2;
-    this.operator = operator;  
+    this.calculatedNumber = calculatedNumber;
   }
   
   addNumber() {
-    return Math.floor(this.number1 + this.number2);
+    this.calculatedNumber = Math.floor(this.number1 + this.number2);
+    return validateNumberLength(this.calculatedNumber);
   }
 
   substractNumber() {
-    return Math.floor(this.number1 - this.number2);
+    this.calculatedNumber = Math.floor(this.number1 - this.number2);
+    return validateNumberLength(this.calculatedNumber);
   }
 
   multiplyNumber() {
-    return Math.floor(this.number1 * this.number2);
+    this.calculatedNumber = Math.floor(this.number1 * this.number2);
+    return validateNumberLength(this.calculatedNumber);
   }
 
   divideNumber() {
-    return Math.floor(this.number1 / this.number2);
+    this.calculatedNumber = Math.floor(this.number1 / this.number2);
+    return validateNumberLength(this.calculatedNumber);
+  }
+
+  validateNumberLength(number) {
+    if (number.toString().length > 3) return false;
+    return number;
   }
 }

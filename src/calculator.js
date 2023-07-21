@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from './constants/message';
 import { OPERATIONS } from './constants/operations';
 import { decimalPointRemover } from './utils';
 import Validator from './validator';
@@ -19,8 +20,12 @@ class Calculator {
         case OPERATIONS.TIMES_CROSS_UPPERCASE:
           result = this.multiply(first, second);
           break;
+        case OPERATIONS.DIVISION:
+        case OPERATIONS.DIVISION_SLASH:
+          result = this.divide(first, second);
+          break;
         default:
-          return null;
+          throw ERROR_MESSAGE.ERROR_OCCURRED_IN_CALCULATION;
       }
     } catch (err) {
       throw new Error(err);
@@ -41,7 +46,9 @@ class Calculator {
     return first * second;
   }
 
-  static divide(first, second) {}
+  static divide(first, second) {
+    return first / second;
+  }
 }
 
 export default Calculator;

@@ -1,5 +1,4 @@
 import { Calculator } from '../src'
-import { ERROR_MSG } from '../src/constants'
 import { validator } from '../src/utils'
 
 /*
@@ -79,30 +78,35 @@ describe('Calculator', () => {
       [-3.555555555555, 1.534455, -5],
     ])('calculator.multiple(%s, %s) => %s', (num1, num2, expected) => {
       calculator.multiple(num1, num2)
-
       expect(calculator.value).toBe(expected)
     })
   })
 
-  describe('calculator.divide()', () => {
-    it('2개의 숫자에 대해 나눗셈이 가능하다.', () => {
-      const num1 = 4
-      const num2 = 2
-
+  describe('2개의 숫자에 대해 나눗셈이 가능하다.', () => {
+    test.each([
+      [4, 2, 2],
+      [3, 2, 1],
+      [-2, 3, 0],
+      [-8, 2, -4],
+      [-7, -5, 1],
+      [144.3, 13.4, 10],
+      [15.555555555555, 3.534455, 4],
+      [-3.555555555555, -1.534455, 2],
+      [-3.555555555555, 1.534455, -2],
+    ])('calculator.divide()', (num1, num2, expected) => {
       calculator.divide(num1, num2)
-
-      expect(calculator.value).toBe(2)
+      expect(calculator.value).toBe(expected)
     })
   })
 
-  describe.each([
-    [1, 2],
-    [3, 4],
-    [5, 6],
-  ])('calculator.getValue()', (num1, num2) => {
-    it('계산 결과를 표현할 때 소수점 이하는 버림한다.', () => {
+  describe('계산 결과를 표현할 때 소수점 이하는 버림한다.', () => {
+    test.each([
+      [144.3, 13.4],
+      [15.555555555555, 3.534455],
+      [-3.555555555555, -1.534455],
+      [-3.555555555555, 1.534455],
+    ])('calculator.getValue(%s, %s)', (num1, num2) => {
       calculator.sum(num1, num2)
-
       expect(Number.isInteger(calculator.value)).toBe(true)
     })
   })

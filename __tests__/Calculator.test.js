@@ -78,21 +78,44 @@ describe('Calculator', () => {
       [15.555555555555, 3.534455, 4],
       [-3.555555555555, -1.534455, 2],
       [-3.555555555555, 1.534455, -2],
-    ])('calculator.divide()', (num1, num2, expected) => {
+      [0, 0, 0],
+    ])('calculator.divide(%s, %s)', (num1, num2, expected) => {
       calculator.divide(num1, num2)
       expect(calculator.value).toBe(expected)
     })
   })
 
   describe('계산 결과를 표현할 때 소수점 이하는 버림한다.', () => {
-    test.each([
+    describe.each([
       [144.3, 13.4],
       [15.555555555555, 3.534455],
       [-3.555555555555, -1.534455],
       [-3.555555555555, 1.534455],
-    ])('calculator.getValue(%s, %s)', (num1, num2) => {
-      calculator.sum(num1, num2)
-      expect(Number.isInteger(calculator.value)).toBe(true)
+      [0, 0],
+    ])('계산 결과를 표현할 때 소수점 이하는 버림한다.', (num1, num2) => {
+      it(`sum : calculator.getValue(${num1}, ${num2})`, () => {
+        calculator.sum(num1, num2)
+        const result = calculator.getValue()
+        expect(Number.isInteger(result) || result === 0).toBe(true)
+      })
+
+      it(`subtract : calculator.getValue(${num1}, ${num2})`, () => {
+        calculator.subtract(num1, num2)
+        const result = calculator.getValue()
+        expect(Number.isInteger(result) || result === 0).toBe(true)
+      })
+
+      it(`multiple : calculator.getValue(${num1}, ${num2})`, () => {
+        calculator.multiple(num1, num2)
+        const result = calculator.getValue()
+        expect(Number.isInteger(result) || result === 0).toBe(true)
+      })
+
+      it(`divide : calculator.getValue(${num1}, ${num2})`, () => {
+        calculator.divide(num1, num2)
+        const result = calculator.getValue()
+        expect(Number.isInteger(result) || result === 0).toBe(true)
+      })
     })
   })
 })

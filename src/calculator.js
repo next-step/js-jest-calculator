@@ -1,11 +1,13 @@
 class Calculator {
-  sum(first, second) {}
+  static calculate(first, second, operation) {}
 
-  subtract(first, second) {}
+  #sum(first, second) {}
 
-  multiply(first, second) {}
+  #subtract(first, second) {}
 
-  divide(first, second) {}
+  #multiply(first, second) {}
+
+  #divide(first, second) {}
 }
 
 export default Calculator;

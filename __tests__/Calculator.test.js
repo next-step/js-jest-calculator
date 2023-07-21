@@ -66,4 +66,17 @@ describe('다룰 수 있는 숫자의 범위 테스트 ', () => {
       )
     })
   })
+
+  describe('나눗셈 범위', () => {
+    test('첫번째 인자 숫자의 범위가 3자리가 넘어가면 에러가 발생한다', () => {
+      expect(() => calculator.divide(1000, 5)).toThrow(
+        ERROR_BY_VALIDATE.OVER_MAX_NUMBER
+      )
+    })
+    test('두번째 인자 숫자의 범위가 3자리가 넘어가면 에러가 발생한다', () => {
+      expect(() => calculator.divide(1, 1000)).toThrow(
+        ERROR_BY_VALIDATE.OVER_MAX_NUMBER
+      )
+    })
+  })
 })

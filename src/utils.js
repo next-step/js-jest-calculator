@@ -18,5 +18,5 @@ export const validator = (...nums) => {
 }
 
 export const floor = (num) => {
-  return Math.floor(num)
+  return Math.trunc(num)
 }

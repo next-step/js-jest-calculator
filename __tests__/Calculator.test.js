@@ -24,7 +24,7 @@ describe('validator의 동작을 확인한다.', () => {
     [0.555, true],
     [-3, true],
     [10000, false],
-  ])('3자리 까지의 숫자만 입력 가능 : %s is %s', (num, isValid) => {
+  ])('validator(%s) => %s', (num, isValid) => {
     if (isValid) {
       expect(() => validator(num)).not.toThrow()
     } else {
@@ -40,14 +40,17 @@ describe('Calculator', () => {
     calculator = new Calculator()
   })
 
-  describe('calculator.sum()', () => {
-    it('2개의 숫자에 대해 덧셈이 가능하다.', () => {
-      const num1 = 2
-      const num2 = 3
-
+  describe('2개의 숫자에 대해 덧셈이 가능하다.', () => {
+    test.each([
+      [1, 2, 3],
+      [-2, 3, 1],
+      [-2, -3, -5],
+      [0.5, 0.5, 1],
+      [0.555555555555, 1.534455, 2],
+      [-0.555555555555, -1.534455, -2],
+    ])('calculator.sum(%s, %s) => %s', (num1, num2, expected) => {
       calculator.sum(num1, num2)
-
-      expect(calculator.value).toBe(5)
+      expect(calculator.value).toBe(expected)
     })
   })
 

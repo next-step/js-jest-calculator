@@ -54,22 +54,29 @@ describe('Calculator', () => {
     })
   })
 
-  describe('calculator.subtract()', () => {
-    it('2개의 숫자에 대해 뺄셈이 가능하다.', () => {
-      const num1 = 3
-      const num2 = 2
-
+  describe('2개의 숫자에 대해 뺄셈이 가능하다.', () => {
+    test.each([
+      [3, 2, 1],
+      [-2, 3, -5],
+      [-2, -3, 1],
+      [0.5, 0.5, 0],
+      [0.555555555555, 1.534455, 0],
+      [-3.555555555555, -1.534455, -2],
+    ])('calculator.subtract(%s, %s) => %s', (num1, num2, expected) => {
       calculator.subtract(num1, num2)
-
-      expect(calculator.value).toBe(1)
+      expect(calculator.value).toBe(expected)
     })
   })
 
-  describe('calculator.multiple()', () => {
-    it('2개의 숫자에 대해 곱셈이 가능하다.', () => {
-      const num1 = 3
-      const num2 = 2
-
+  describe('2개의 숫자에 대해 곱셈이 가능하다.', () => {
+    test.each([
+      [3, 2, 1],
+      [-2, 3, -5],
+      [-2, -3, 1],
+      [0.5, 0.5, 0],
+      [0.555555555555, 1.534455, 0],
+      [-3.555555555555, -1.534455, -2],
+    ])('calculator.multiple(%s, %s) => %s', (num1, num2, expected) => {
       calculator.multiple(num1, num2)
 
       expect(calculator.value).toBe(6)

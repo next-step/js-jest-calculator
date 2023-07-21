@@ -1,11 +1,11 @@
-import { ERROR_BY_VALIDATE } from './constants'
+import { ERROR_BY_VALIDATE, MAX_NUMBER } from './constants'
 
 class Calculator {
   sum(a, b) {
-    if (a > 999) {
+    if (a > MAX_NUMBER) {
       throw new Error(ERROR_BY_VALIDATE.OVER_MAX_NUMBER)
     }
-    if (b > 999) {
+    if (b > MAX_NUMBER) {
       throw new Error(ERROR_BY_VALIDATE.OVER_MAX_NUMBER)
     }
 

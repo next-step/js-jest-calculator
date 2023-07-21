@@ -4,8 +4,8 @@ import { CALCULATOR_CONFIGURE } from '../constants/calculatorConfigure.js';
 const isValueInRange = (operands, max, min) => operands.every((operand) => operand < max && operand > min);
 const isValidNumber = (operands) => operands.every((operand) => typeof operand === 'number' && !Number.isNaN(operand));
 
-export const validateCalculator = (...operands) => {
-  const { NOT_NUMBER, OVER_MAX_LENGTH, REQUIRED_NUMBER } = ERROR_MESSAGE;
+export const validateCalculator = (operator, ...operands) => {
+  const { NOT_NUMBER, OVER_MAX_LENGTH, REQUIRED_NUMBER, NOT_DIVIDE_ZERO } = ERROR_MESSAGE;
   const { MAX_NUMBER, MIN_NUMBER } = CALCULATOR_CONFIGURE;
 
   if (operands.length !== 2) {
@@ -18,6 +18,10 @@ export const validateCalculator = (...operands) => {
 
   if (!isValueInRange(operands, MAX_NUMBER, MIN_NUMBER)) {
     throw OVER_MAX_LENGTH;
+  }
+
+  if (operator.name === 'divide' && operands[1] === 0) {
+    throw NOT_DIVIDE_ZERO;
   }
 
   return true;

@@ -1,8 +1,9 @@
 {
-  "name": "@woowacourse/javascript-racingcar",
+  "name": "@woowacourse/javascript-calculator",
   "version": "1.0.0",
-  "description": "우아한테크코스 웹 프론트엔드 레벨1 자동차 경주 미션",
+  "description": "우아한테크코스 웹 프론트엔드 온보딩 계산기 미션",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "start": "npm run build-prod && node dist/bundle.js",
     "build-dev": "webpack --mode development",
@@ -11,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/woowacourse/javascript-racingcar.git"
+    "url": "git+https://github.com/woowacourse/javascript-calculator.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/woowacourse/javascript-racingcar/issues"
+    "url": "https://github.com/woowacourse/javascript-calculator/issues"
   },
-  "homepage": "https://github.com/woowacourse/javascript-racingcar#readme",
+  "homepage": "https://github.com/woowacourse/javascript-calculator#readme",
   "devDependencies": {
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",

@@ -26,6 +26,6 @@ export default class Calculator {
       return 0;
     }
 
-    return Math.floor(result);
+    return result.toFixed(0);
   }
 }

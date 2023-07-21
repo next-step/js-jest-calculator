@@ -17,7 +17,7 @@ export const validator = (...nums) => {
   })
 }
 
-export const floor = (num) => {
+export const trunc = (num) => {
   const result = Math.trunc(num)
 
   if (result === -0) return Math.abs(result)

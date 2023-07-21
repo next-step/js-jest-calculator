@@ -16,6 +16,9 @@ describe('계산기 뺄셈 테스트', () => {
   test('subtract(1,1) 의 결과값은 0이다.', () => {
     expect(calculator.substract(1, 1)).toBe(0)
   })
+  test('subtract(1.5, 1) 의 결과값은 0이다.', () => {
+    expect(calculator.substract(1.5, 1)).toBe(0)
+  })
 })
 
 describe('계산기 곱셈 테스트', () => {

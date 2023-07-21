@@ -1,4 +1,4 @@
-import { hasNumberOverLength } from '../src/utils/number';
+import { hasNumberOverLength, roundDown } from '../src/utils/number';
 
 describe('유틸 함수', () => {
   describe('hasNumberOverLength', () => {
@@ -21,6 +21,24 @@ describe('유틸 함수', () => {
         [[-1.11], 0, true],
       ])('hasNumberOverLength(%f,%f)', (numbers, numberLength, expected) => {
         const result = hasNumberOverLength(numbers, numberLength);
+
+        expect(result).toBe(expected);
+      });
+    });
+  });
+
+  describe('roundDown', () => {
+    describe('소수점 이하 자리를 버림한다', () => {
+      test.each([
+        [0.5, 0],
+        [-0.5, 0],
+        [-1.4, -1],
+        [-1.6, -1],
+        [-10, -10],
+        [999, 999],
+        [0, 0],
+      ])('roundDown(%f)', (number, expected) => {
+        const result = roundDown(number);
 
         expect(result).toBe(expected);
       });

@@ -4,3 +4,8 @@ export const hasNumberOverLength = (numbers, length) => {
   });
   return result;
 };
+
+export const roundDown = (number) => {
+  const roundDownString = String(number).split('.')[0];
+  return roundDownString === '-0' ? 0 : Number(roundDownString);
+};

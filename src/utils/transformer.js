@@ -1,1 +1,1 @@
-export const floor = (number) => Math.floor(number);
+export const floor = Math.floor;

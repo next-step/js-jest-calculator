@@ -96,6 +96,36 @@ describe('곱셈 테스트', () => {
   });
 });
 
+describe('나눈셈 테스트', () => {
+  test('4 / 2은 2이다.', () => {
+    expect(Calculator.calculate(4, 2, OPERATIONS.DIVISION_SLASH)).toBe(2);
+  });
+
+  test('200 / 10은 20이다.', () => {
+    expect(Calculator.calculate(200, 10, OPERATIONS.DIVISION_SLASH)).toBe(20);
+  });
+
+  test('60 / -2은 -30이다.', () => {
+    expect(Calculator.calculate(60, -2, OPERATIONS.DIVISION_SLASH)).toBe(-30);
+  });
+
+  test('-60 / 2은 -30이다.', () => {
+    expect(Calculator.calculate(-60, 2, OPERATIONS.DIVISION_SLASH)).toBe(-30);
+  });
+
+  test('-60 / -2은 30이다.', () => {
+    expect(Calculator.calculate(-60, -2, OPERATIONS.DIVISION_SLASH)).toBe(30);
+  });
+
+  test('10.134 / 2.45는 4이다.', () => {
+    expect(Calculator.calculate(10.134, 2.45, OPERATIONS.DIVISION_SLASH)).toBe(4);
+  });
+
+  test('÷ 기호 테스트 (4 ÷ 2 = 2)', () => {
+    expect(Calculator.calculate(4, 2, OPERATIONS.DIVISION)).toBe(2);
+  });
+});
+
 describe('유효성 검사 테스트', () => {
   test('피연산자를 입력하지 않은 경우 ("" + "")', () => {
     expect(() => {

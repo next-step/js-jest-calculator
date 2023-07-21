@@ -5,7 +5,6 @@ export const isNumber = (num) => {
 }
 
 export const isValidDigits = (num) => {
-  // 자리수가 세자리인지 판단
   if (!Number.isInteger(num)) return
   if (String(num).length > LIMIT) throw new Error(ERROR_MSG.INVALID_DIGIT)
 }

@@ -11,6 +11,9 @@ class Calculator {
         case OPERATIONS.PLUS:
           result = this.sum(first, second);
           break;
+        case OPERATIONS.MINUS:
+          result = this.subtract(first, second);
+          break;
         default:
           return null;
       }
@@ -25,7 +28,9 @@ class Calculator {
     return first + second;
   }
 
-  static subtract(first, second) {}
+  static subtract(first, second) {
+    return first - second;
+  }
 
   static multiply(first, second) {}
 

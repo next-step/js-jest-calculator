@@ -32,35 +32,35 @@ describe('덧셈 테스트', () => {
   });
 });
 
-// describe('뺄셈 테스트', () => {
-//   test('2 - 1은 1이다.', () => {
-//     expect(Calculator.calculate(2, 1, OPERATIONS.MINUS)).toBe(1);
-//   });
+describe('뺄셈 테스트', () => {
+  test('2 - 1은 1이다.', () => {
+    expect(Calculator.calculate(2, 1, OPERATIONS.MINUS)).toBe(1);
+  });
 
-//   test('200 - 100은 100이다.', () => {
-//     expect(Calculator.calculate(100, 100, OPERATIONS.MINUS)).toBe(100);
-//   });
+  test('200 - 100은 100이다.', () => {
+    expect(Calculator.calculate(200, 100, OPERATIONS.MINUS)).toBe(100);
+  });
 
-//   test('60 - -20은 80이다.', () => {
-//     expect(Calculator.calculate(60, -20, OPERATIONS.MINUS)).toBe(80);
-//   });
+  test('60 - -20은 80이다.', () => {
+    expect(Calculator.calculate(60, -20, OPERATIONS.MINUS)).toBe(80);
+  });
 
-//   test('-60 - 20은 -80이다.', () => {
-//     expect(Calculator.calculate(-60, 20, OPERATIONS.MINUS)).toBe(-80);
-//   });
+  test('-60 - 20은 -80이다.', () => {
+    expect(Calculator.calculate(-60, 20, OPERATIONS.MINUS)).toBe(-80);
+  });
 
-//   test('-60 - -20은 -40이다.', () => {
-//     expect(Calculator.calculate(-60, -20, OPERATIONS.MINUS)).toBe(-40);
-//   });
+  test('-60 - -20은 -40이다.', () => {
+    expect(Calculator.calculate(-60, -20, OPERATIONS.MINUS)).toBe(-40);
+  });
 
-//   test('10.134 - 2.45는 7이다.', () => {
-//     expect(Calculator.calculate(10.134, 2.45, OPERATIONS.MINUS)).toBe(7);
-//   });
+  test('10.134 - 2.45는 7이다.', () => {
+    expect(Calculator.calculate(10.134, 2.45, OPERATIONS.MINUS)).toBe(7);
+  });
 
-//   test('-10.45 - -20.12은 9이다.', () => {
-//     expect(Calculator.calculate(-60, -20, OPERATIONS.MINUS)).toBe(9);
-//   });
-// });
+  test('-10.45 - -20.12은 9이다.', () => {
+    expect(Calculator.calculate(-10.45, -20.12, OPERATIONS.MINUS)).toBe(9);
+  });
+});
 
 // describe('곱셈 테스트', () => {
 //   test('2 / 2은 4이다.', () => {

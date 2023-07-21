@@ -2,46 +2,102 @@ import Calculator from '../src/calculator';
 import { BasicOperation } from '../src/operations';
 
 describe('계산기', () => {
-  it('2개의 숫자에 대해 덧셈이 가능하다', () => {
+  describe('2개의 숫자 사칙연산', () => {
     const calculator = new Calculator(new BasicOperation());
 
-    expect(calculator.operation.sum(1, 2)).toBe(1 + 2);
-    expect(calculator.operation.sum(-1, -1)).toBe(-1 + -1);
+    test.each([
+      [1, 2, 3],
+      [10, 20, 30],
+      [-999, 999, 0],
+    ])('sum(%d, %d)', (a, b, expected) => {
+      const result = calculator.operation.sum(a, b);
+      expect(result).toBe(expected);
+    });
+
+    test.each([
+      [1, 2, -1],
+      [0, 1, -1],
+      [10, 20, -10],
+      [-999, 999, -1998],
+    ])('subtract(%f, %f)', (a, b, expected) => {
+      const result = calculator.operation.subtract(a, b);
+      expect(result).toBe(expected);
+    });
+
+    test.each([
+      [1, 2, 2],
+      [0, 1, 0],
+      [10, 20, 200],
+      [-999, 999, -998001],
+    ])('multiply(%f, %f)', (a, b, expected) => {
+      const result = calculator.operation.multiply(a, b);
+      expect(result).toBe(expected);
+    });
+
+    test.each([
+      [4, 2, 2],
+      [0, 1, 0],
+      [7, -2, -3.5],
+      [-999, 999, -1],
+      [-1, -10, 0],
+    ])('divide(%f, %f)', (a, b, expected) => {
+      const result = calculator.operation.divide(a, b);
+      expect(result).toBe(expected);
+    });
   });
 
-  it('2개의 숫자에 대해 뺄셈이 가능하다', () => {
-    const calculator = new Calculator(new BasicOperation());
+  describe('예외 사항', () => {
+    it('3자리 수 이상 연산', () => {
+      const calculator = new Calculator(new BasicOperation());
 
-    expect(calculator.operation.subtract(1, 2)).toBe(1 - 2);
-    expect(calculator.operation.subtract(-1, -2)).toBe(-1 - -2);
-  });
+      expect(() => calculator.operation.sum(1000, 2000)).toThrow(
+        '숫자는 한 번에 3자리까지 입력 가능합니다.'
+      );
+      expect(() => calculator.operation.subtract(1000, 2000)).toThrow(
+        '숫자는 한 번에 3자리까지 입력 가능합니다.'
+      );
+      expect(() => calculator.operation.multiply(1000, 2000)).toThrow(
+        '숫자는 한 번에 3자리까지 입력 가능합니다.'
+      );
+      expect(() => calculator.operation.divide(1000, 2000)).toThrow(
+        '숫자는 한 번에 3자리까지 입력 가능합니다.'
+      );
+    });
 
-  it('2개의 숫자에 대해 곱셈이 가능하다', () => {
-    const calculator = new Calculator(new BasicOperation());
+    describe('계산 결과를 표현할 때 소수점 이하는 버림한다', () => {
+      const calculator = new Calculator(new BasicOperation());
 
-    expect(calculator.operation.multiply(1, 2)).toBe(1 * 2);
-    expect(calculator.operation.multiply(-3, 2)).toBe(-3 * 2);
-  });
+      test.each([[1, 1, 6, 2][(-10, -10.4, -20)]])(
+        'sum(%d, %d)',
+        (a, b, expected) => {
+          const result = calculator.operation.sum(a, b);
+          expect(result).toBe(expected);
+        }
+      );
 
-  it('2개의 숫자에 대해 나누기가 가능하다', () => {
-    const calculator = new Calculator(new BasicOperation());
+      test.each([
+        [-1.1, -1.22, -2],
+        [1.99, 2.4, 0],
+      ])('subtract(%f, %f)', (a, b, expected) => {
+        const result = calculator.operation.subtract(a, b);
+        expect(result).toBe(expected);
+      });
 
-    expect(calculator.operation.divide(4, 2)).toBe(4 / 2);
-    expect(calculator.operation.divide(0, 2)).toBe(0 / 2);
-    expect(calculator.operation.divide(1, 0)).toBe(1 / 0);
-  });
+      test.each([
+        [1, 2.2, 2],
+        [-1.1, -1.22, 1],
+      ])('multiply(%f, %f)', (a, b, expected) => {
+        const result = calculator.operation.multiply(a, b);
+        expect(result).toBe(expected);
+      });
 
-  it('숫자는 한번에 최대 3자리 수까지만 다룰 수 있다.', () => {
-    const calculator = new Calculator(new BasicOperation());
-
-    expect(() => calculator.operation.sum(1000, 2000)).toThrow(
-      '숫자는 한 번에 3자리까지 입력 가능합니다.'
-    );
-  });
-
-  it('계산 결과를 표현할 때 소수점 이하는 버림한다', () => {
-    const calculator = new Calculator(new BasicOperation());
-
-    expect(calculator.operation.divide(1, 2)).toBe(0);
+      test.each([
+        [7, -2, -3],
+        [-1.1, -1.22, 0],
+      ])('divide(%f, %f)', (a, b, expected) => {
+        const result = calculator.operation.divide(a, b);
+        expect(result).toBe(expected);
+      });
+    });
   });
 });

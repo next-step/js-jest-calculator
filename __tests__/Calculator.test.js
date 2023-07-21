@@ -31,30 +31,19 @@ describe("피연산자가 유효한지 검사한다.", () => {
       ERROR_MESSAGE.INVALID_OPERAND
     );
 
+    // 숫자로 변환 가능한 올바른 형태의 문자열이라면, 오류 메시지를 반환하지 않는다.
     expect(() =>
       calculator.validate(String(int_pos_operand), valid_operand)
-    ).toThrow(ERROR_MESSAGE.INVALID_OPERAND);
+    ).not.toThrow();
     expect(() =>
       calculator.validate(String(int_neg_operand), valid_operand)
-    ).toThrow(ERROR_MESSAGE.INVALID_OPERAND);
+    ).not.toThrow();
     expect(() =>
       calculator.validate(String(float_pos_operand), valid_operand)
-    ).toThrow(ERROR_MESSAGE.INVALID_OPERAND);
+    ).not.toThrow();
     expect(() =>
       calculator.validate(String(float_neg_operand), valid_operand)
-    ).toThrow(ERROR_MESSAGE.INVALID_OPERAND);
-    expect(() =>
-      calculator.validate(String(long_int_pos_operand), valid_operand)
-    ).toThrow(ERROR_MESSAGE.INVALID_OPERAND);
-    expect(() =>
-      calculator.validate(String(long_int_neg_operand), valid_operand)
-    ).toThrow(ERROR_MESSAGE.INVALID_OPERAND);
-    expect(() =>
-      calculator.validate(String(long_float_pos_operand), valid_operand)
-    ).toThrow(ERROR_MESSAGE.INVALID_OPERAND);
-    expect(() =>
-      calculator.validate(String(long_float_neg_operand), valid_operand)
-    ).toThrow(ERROR_MESSAGE.INVALID_OPERAND);
+    ).not.toThrow();
   });
 
   it("피연산자가 세 자리 초과라면, 오류 메시지를 반환한다.", () => {

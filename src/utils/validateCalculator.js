@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from '../constants/errorMessage.js';
 import { CALCULATOR_CONFIGURE } from '../constants/calculatorConfigure.js';
 
-const isValueInRange = (operands, max, min) => operands.every((operand) => operand < max && operand > min);
+const isValueInRange = (operands, max, min) => operands.every((operand) => operand <= max && operand >= min);
 const isValidNumber = (operands) => operands.every((operand) => typeof operand === 'number' && !Number.isNaN(operand));
 
 export const validateCalculator = (operator, ...operands) => {

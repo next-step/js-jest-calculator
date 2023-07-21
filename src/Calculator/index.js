@@ -13,7 +13,7 @@ class Calculator {
   sum(a, b) {
     this.validate(a, b)
 
-    return a + b
+    return Math.floor(a + b)
   }
 
   substract(a, b) {

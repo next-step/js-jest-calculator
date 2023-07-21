@@ -25,7 +25,7 @@ class Calculator {
   multiply(a, b) {
     this.validate(a, b)
 
-    return a * b
+    return Math.floor(a * b)
   }
 
   divide(a, b) {

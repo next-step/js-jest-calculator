@@ -1,7 +1,4 @@
-export const hasNumberOverGivenDigit = (numbers, digit) => {
-  if (numbers) {
-  }
-
-  const result = numbers.some((number) => String(number).length > digit);
+export const hasNumberOverLength = (numbers, length) => {
+  const result = numbers.some((number) => String(number).length > length);
   return result;
 };

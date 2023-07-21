@@ -1,4 +1,5 @@
-import { POS_ZERO, NEG_ZERO, POS_INF, NEG_INF } from "./constants";
+import { POS_ZERO, NEG_ZERO, POS_INF, NEG_INF } from "./constants/numbers";
+import { DECIMAL_PLACE, ERROR_MESSAGE } from "./constants/settings";
 
 export default class Calculator {
   add(operand1, operand2) {
@@ -19,13 +20,13 @@ export default class Calculator {
 
   display(result) {
     if (isNaN(result) || result === POS_INF || result === NEG_INF) {
-      return "오류";
+      throw new Error(ERROR_MESSAGE);
     }
 
     if (Object.is(result, NEG_ZERO)) {
-      return 0;
+      return POS_ZERO;
     }
 
-    return result.toFixed(0);
+    return result.toFixed(DECIMAL_PLACE);
   }
 }

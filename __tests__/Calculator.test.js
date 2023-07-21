@@ -1,5 +1,6 @@
 import Calculator from "../src/Calculator";
-import { POS_ZERO, NEG_ZERO, POS_INF, NEG_INF } from "../src/constants";
+import { POS_ZERO, NEG_ZERO, POS_INF, NEG_INF } from "../src/constants/numbers";
+import { DECIMAL_PLACE, ERROR_MESSAGE } from "../src/constants/settings";
 
 const calculator = new Calculator();
 
@@ -51,12 +52,12 @@ describe("피연산자 두 개와 연산자 하나의 연산 결과를 반환한
 // feature 3 : 사칙 연산 결과 디스플레이
 describe("화면에 출력할 연산 결과를 반환한다.", () => {
   it("연산 결과 NaN인 경우, 오류 메시지를 반환한다.", () => {
-    expect(calculator.display(NaN)).toBe("오류");
+    expect(() => calculator.display(NaN)).toThrow(ERROR_MESSAGE);
   });
 
   it("연산 결과 -Infinity/Infinity인 경우, 오류 메시지를 반환한다.", () => {
-    expect(calculator.display(NEG_INF)).toBe("오류");
-    expect(calculator.display(POS_INF)).toBe("오류");
+    expect(() => calculator.display(NEG_INF)).toThrow(ERROR_MESSAGE);
+    expect(() => calculator.display(POS_INF)).toThrow(ERROR_MESSAGE);
   });
 
   it("연산 결과가 -0인 경우, 0을 반환한다.", () => {
@@ -64,8 +65,6 @@ describe("화면에 출력할 연산 결과를 반환한다.", () => {
   });
 
   it("그 외의 경우, 연산 결과의 소수점은 버림 처리하고 반환한다.", () => {
-    const DECIMAL_PLACE = 0;
-
     const pos_int = 1970;
     const neg_int = -1970;
     const pos_float = 1995.1031;

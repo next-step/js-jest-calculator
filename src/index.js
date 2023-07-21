@@ -1,2 +1,2 @@
 export * from './calculator';
-export * from './constants/errorMessage';
+export * from './constants';

@@ -2,6 +2,8 @@ import { POS_ZERO, NEG_ZERO, POS_INF, NEG_INF } from "./constants/numbers";
 import { DECIMAL_PLACE, ERROR_MESSAGE } from "./constants/settings";
 
 export default class Calculator {
+  validate(operand1, operand2) {}
+
   add(operand1, operand2) {
     return operand1 + operand2;
   }
@@ -20,7 +22,7 @@ export default class Calculator {
 
   display(result) {
     if (isNaN(result) || result === POS_INF || result === NEG_INF) {
-      throw new Error(ERROR_MESSAGE);
+      throw new Error(ERROR_MESSAGE.INVALID_RESULT);
     }
 
     if (Object.is(result, NEG_ZERO)) {

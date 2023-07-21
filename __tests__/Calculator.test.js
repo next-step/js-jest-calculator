@@ -34,6 +34,9 @@ describe('계산기 나눗셈 테스트', () => {
   test('divide(2,2) 의 결과값은 1이다.', () => {
     expect(calculator.divide(2, 2)).toBe(1)
   })
+  test('divide(5, 2) 의 결과값은 0이다.', () => {
+    expect(calculator.divide(5, 2)).toBe(2)
+  })
 })
 
 describe('다룰 수 있는 숫자의 범위 테스트 ', () => {

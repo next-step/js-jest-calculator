@@ -17,6 +17,8 @@ class Calculator {
   }
 
   substract(a, b) {
+    this.validate(a, b)
+
     return a - b
   }
 

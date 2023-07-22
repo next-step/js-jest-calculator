@@ -1,4 +1,5 @@
 import { Calculator } from "../src/Calculator";
+import { ERROR_MESSAGES } from "../src/constants";
 
 describe("Calculator", () => {
   test("2개의 숫자에 대해 덧셈이 가능하다.", () => {
@@ -34,7 +35,7 @@ describe("Calculator", () => {
 
     [1, 2, 3].forEach((aNumber) => calculator.pressNumber(aNumber));
 
-    expect(() => calculator.pressNumber(1)).toThrow();
+    expect(() => calculator.pressNumber(1)).toThrowError(ERROR_MESSAGES.EXCEED_MAXIMUM_INPUT_NUMBERS);
   });
   test("계산 결과를 표현할 때 소수점 이하는 버림한다.", () => {
     const calculator = new Calculator();

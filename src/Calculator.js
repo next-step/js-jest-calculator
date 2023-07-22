@@ -55,11 +55,11 @@ export class Calculator {
 
   pressResult() {
     this.result = {
-      "+": this.add.bind(this),
-      "-": this.minus.bind(this),
-      "*": this.multiply.bind(this),
-      "/": this.divide.bind(this),
-    }[this.operator](this.a, this.b);
+      "+": this.add,
+      "-": this.minus,
+      "*": this.multiply,
+      "/": this.divide,
+    }[this.operator].call(this, this.a, this.b);
 
     this.showResult();
   }

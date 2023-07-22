@@ -2,14 +2,12 @@ import { add, divide, multiply, subtract } from './utils/calculation.js';
 import { floor } from './utils/transformer.js';
 import { validateCalculator } from './utils/validateCalculator.js';
 
-const calculateWithValidation = (calculate, transformer = (number) => number) => {
-  return (firstNumber, secondNumber) => {
+const calculateWithValidation = (operator, transformer = Number) => {
+  return (...operands) => {
     try {
-      const { message, success } = validateCalculator(firstNumber, secondNumber);
-      if (success) {
-        return transformer(calculate(firstNumber, secondNumber));
+      if (validateCalculator(operator, ...operands)) {
+        return transformer(operator(...operands));
       }
-      throw message;
     } catch (error) {
       throw new Error(error);
     }

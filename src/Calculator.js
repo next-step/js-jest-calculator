@@ -49,7 +49,6 @@ export class Calculator {
     if (this.#checkIsOperator(aOperator)) {
       throw Error(ERROR_MESSAGES.PRESS_ONLY_OPERATOR);
     }
-
     this.operator = aOperator;
   }
 

@@ -9,19 +9,19 @@ export class Calculator {
   constructor() {}
 
   add(a, b) {
-    this.#checkTypeIsNumber(a, b);
+    this.#throwErrorWhenTypeIsNotNumber(a, b);
     this.result = a + b;
   }
   minus(a, b) {
-    this.#checkTypeIsNumber(a, b);
+    this.#throwErrorWhenTypeIsNotNumber(a, b);
     this.result = a - b;
   }
   multiply(a, b) {
-    this.#checkTypeIsNumber(a, b);
+    this.#throwErrorWhenTypeIsNotNumber(a, b);
     this.result = a * b;
   }
   divide(a, b) {
-    this.#checkTypeIsNumber(a, b);
+    this.#throwErrorWhenTypeIsNotNumber(a, b);
     this.result = a / b;
   }
 
@@ -61,14 +61,14 @@ export class Calculator {
     return Math.floor(this.result);
   }
 
-  #checkTypeIsNumber(...numbers) {
-    for (let aNumber of numbers) {
-      if (typeof aNumber !== "number") {
-        throw Error(ERROR_MESSAGES.NOT_TYPE_NUMBER);
-      }
+  #throwErrorWhenTypeIsNotNumber(...numbers) {
+    if (!this.#checkTypeIsNumber(...numbers)) {
+      throw Error(ERROR_MESSAGES.TYPE_IS_NOT_NUMBER);
     }
+  }
 
-    return numbers;
+  #checkTypeIsNumber(...numbers) {
+    return numbers.every((aNumber) => typeof aNumber === "number");
   }
 
   #checkIsOperator(aOperator) {

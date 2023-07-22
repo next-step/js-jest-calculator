@@ -22,6 +22,11 @@ export class Calculator {
   }
   divide(a, b) {
     this.#throwErrorWhenTypeIsNotNumber(a, b);
+
+    if (b === 0) {
+      throw new Error(ERROR_MESSAGES.CAN_NOT_DIVIDE_ZERO_IN_DENOMINATOR);
+    }
+
     this.result = a / b;
   }
 

@@ -4,6 +4,7 @@ export const ERROR_MESSAGES = {
   PRESS_ONLY_NUMBER: "숫자를 입력해주세요.",
   PRESS_ONLY_OPERATOR: "연산자를 입력해주세요.",
   TYPE_IS_NOT_NUMBER: "연산받을 값의 타입이 숫자가 아닙니다.",
+  CAN_NOT_DIVIDE_ZERO_IN_DENOMINATOR: "0으로 나눌 수 없습니다.",
 };
 
 export const OPERATORS = ["*", "/", "+", "%", "-"];

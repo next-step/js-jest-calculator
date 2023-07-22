@@ -57,5 +57,13 @@ describe("Calculator", () => {
         ERROR_MESSAGES.TYPE_IS_NOT_NUMBER
       );
     });
+
+    test("나눗셈을 할 때 분모가 0이면 에러를 던진다", () => {
+      const calculator = new Calculator();
+
+      expect(() => calculator.divide(1, 0)).toThrowError(
+        ERROR_MESSAGES.CAN_NOT_DIVIDE_ZERO_IN_DENOMINATOR
+      );
+    });
   });
 });

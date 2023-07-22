@@ -10,15 +10,15 @@ export class Calculator {
 
   add(a, b) {
     this.#throwErrorWhenTypeIsNotNumber(a, b);
-    this.result = a + b;
+    return a + b;
   }
   minus(a, b) {
     this.#throwErrorWhenTypeIsNotNumber(a, b);
-    this.result = a - b;
+    return a - b;
   }
   multiply(a, b) {
     this.#throwErrorWhenTypeIsNotNumber(a, b);
-    this.result = a * b;
+    return a * b;
   }
   divide(a, b) {
     this.#throwErrorWhenTypeIsNotNumber(a, b);
@@ -27,7 +27,7 @@ export class Calculator {
       throw new Error(ERROR_MESSAGES.CAN_NOT_DIVIDE_ZERO_IN_DENOMINATOR);
     }
 
-    this.result = a / b;
+    return a / b;
   }
 
   pressNumber(aNumber) {
@@ -55,11 +55,13 @@ export class Calculator {
 
   pressResult() {
     this.result = {
-      "+": this.add,
-      "-": this.minus,
-      "*": this.multiply,
-      "/": this.divide,
+      "+": this.add.bind(this),
+      "-": this.minus.bind(this),
+      "*": this.multiply.bind(this),
+      "/": this.divide.bind(this),
     }[this.operator](this.a, this.b);
+
+    this.showResult();
   }
 
   showResult() {

@@ -2,41 +2,35 @@ import { Calculator } from "../src/Calculator";
 import { ERROR_MESSAGES } from "../src/constants";
 
 describe("Calculator", () => {
-  test("2개의 숫자에 대해 덧셈이 가능하다.", () => {
-    const calculator = new Calculator();
+  describe("기본 기능 구현", () => {
+    test("2개의 숫자에 대해 덧셈이 가능하다.", () => {
+      const calculator = new Calculator();
 
-    calculator.add(1, 2);
+      expect(calculator.add(1, 2)).toBe(3);
+    });
+    test("2개의 숫자에 대해 뺄셈이 가능하다.", () => {
+      const calculator = new Calculator();
 
-    expect(calculator.result).toBe(3);
-  });
-  test("2개의 숫자에 대해 뺄셈이 가능하다.", () => {
-    const calculator = new Calculator();
+      expect(calculator.minus(1, 2)).toBe(-1);
+    });
+    test("2개의 숫자에 대해 곱셈이 가능하다.", () => {
+      const calculator = new Calculator();
 
-    calculator.minus(1, 2);
+      expect(calculator.multiply(1, 2)).toBe(2);
+    });
+    test("2개의 숫자에 대해 나눗셈이 가능하다.", () => {
+      const calculator = new Calculator();
 
-    expect(calculator.result).toBe(-1);
-  });
-  test("2개의 숫자에 대해 곱셈이 가능하다.", () => {
-    const calculator = new Calculator();
+      expect(calculator.divide(1, 2)).toBe(0.5);
+    });
 
-    calculator.multiply(1, 2);
+    test("계산 결과를 표현할 때 소수점 이하는 버림한다.", () => {
+      const calculator = new Calculator();
 
-    expect(calculator.result).toBe(2);
-  });
-  test("2개의 숫자에 대해 나눗셈이 가능하다.", () => {
-    const calculator = new Calculator();
+      calculator.result = 3.44444;
 
-    calculator.divide(1, 2);
-
-    expect(calculator.result).toBe(0.5);
-  });
-
-  test("계산 결과를 표현할 때 소수점 이하는 버림한다.", () => {
-    const calculator = new Calculator();
-
-    calculator.result = 3.44444;
-
-    expect(calculator.showResult()).toBe(3);
+      expect(calculator.showResult()).toBe(3);
+    });
   });
 
   describe("예외처리", () => {
@@ -64,6 +58,21 @@ describe("Calculator", () => {
       expect(() => calculator.divide(1, 0)).toThrowError(
         ERROR_MESSAGES.CAN_NOT_DIVIDE_ZERO_IN_DENOMINATOR
       );
+    });
+  });
+  describe("시나리오 테스트", () => {
+    test("숫자 버튼을 누르고, 연산자를 누르고, 숫자를 누르고, 결과값을 누르면, 연산결과가 출력된다.", () => {
+      const calculator = new Calculator();
+
+      const spyFn = jest.spyOn(calculator, "showResult");
+
+      calculator.pressNumber(1);
+      calculator.pressOperator("+");
+      calculator.pressNumber(2);
+      calculator.pressResult();
+
+      expect(spyFn).toBeCalled();
+      expect(calculator.result).toBe(3);
     });
   });
 });

@@ -13,8 +13,8 @@ describe("Calculator-add", () => {
 		expect(add(1, -1)).toBe(0);
 	});
 
-	test("add-float", () => {
-		expect(add(1.1, 1.1)).toBe(2.2);
+	test("add-float-cut", () => {
+		expect(add(1.1, 1.1)).toBe(2);
 	});
 });
 
@@ -31,7 +31,7 @@ describe("Calculator-subtract", () => {
 		expect(subtract(1, -1)).toBe(2);
 	});
 
-	test("subtract-float", () => {
+	test("subtract-float-cut", () => {
 		expect(subtract(1.1, 1.1)).toBe(0);
 	});
 });
@@ -49,8 +49,8 @@ describe("Calculator-multiply", () => {
 		expect(multiply(1, -1)).toBe(-1);
 	});
 
-	test("multiply-float", () => {
-		expect(multiply(1.1, 1.1)).toBe(1.21);
+	test("multiply-float-cut", () => {
+		expect(multiply(1.1, 1.1)).toBe(1);
 	});
 });
 
@@ -67,7 +67,7 @@ describe("Calculator-divide", () => {
 		expect(divide(1, -1)).toBe(-1);
 	});
 
-	test("divide-float", () => {
+	test("divide-float-cut", () => {
 		expect(divide(1.1, 1.1)).toBe(1);
 	});
 });

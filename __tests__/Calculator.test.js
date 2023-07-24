@@ -20,9 +20,12 @@ describe('Calculator', () => {
   it('Divides 4 / 2 to equal 2', () => {
     expect(calculator.divide(4, 2)).toBe(2);
   });
+  it('Divides 4 / 0 to Error', () => {
+    expect(() => calculator.divide(4, 0)).toThrow('0으로 나눌 수는 없습니다!');
+  });
 
   // 숫자는 한번에 최대 3자리 수까지만 다룰 수 있다.
-  it('3 digits 1000 + 4 to equal 1004', () => {
+  it('3 digits 1000 + 4 to Error', () => {
     expect(() => calculator.sum(1000, 4)).toThrow(
       '숫자는 한번에 최대 3자리 수까지만 다룰 수 있습니다!'
     );

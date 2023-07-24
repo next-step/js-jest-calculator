@@ -30,6 +30,10 @@ class Calculator {
       throw new Error('숫자는 한번에 최대 3자리 수까지만 다룰 수 있습니다!');
     }
 
+    if (num2 === 0) {
+      throw new Error('0으로 나눌 수는 없습니다!');
+    }
+
     return Math.floor(num1 / num2);
   }
 

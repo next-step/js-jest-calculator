@@ -29,3 +29,7 @@ export const validateNumbers = (a, b) => {
     console.error(e.message);
   }
 };
+
+export const getOnlyInteger = (result) => {
+  return Math.floor(result);
+};

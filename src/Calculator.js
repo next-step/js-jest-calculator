@@ -1,9 +1,11 @@
+import CustomError from './Error.js';
+
 class Calculator {
   #MAX_DIGITS = 1_000;
 
   sum(num1, num2) {
     if (!this.validate(num1, num2)) {
-      throw new Error('숫자는 한번에 최대 3자리 수까지만 다룰 수 있습니다!');
+      throw CustomError.DIGITS;
     }
 
     return Math.floor(num1 + num2);
@@ -11,7 +13,7 @@ class Calculator {
 
   subtract(num1, num2) {
     if (!this.validate(num1, num2)) {
-      throw new Error('숫자는 한번에 최대 3자리 수까지만 다룰 수 있습니다!');
+      throw CustomError.DIGITS;
     }
 
     return Math.floor(num1 - num2);
@@ -19,7 +21,7 @@ class Calculator {
 
   multiply(num1, num2) {
     if (!this.validate(num1, num2)) {
-      throw new Error('숫자는 한번에 최대 3자리 수까지만 다룰 수 있습니다!');
+      throw CustomError.DIGITS;
     }
 
     return Math.floor(num1 * num2);
@@ -27,11 +29,11 @@ class Calculator {
 
   divide(num1, num2) {
     if (!this.validate(num1, num2)) {
-      throw new Error('숫자는 한번에 최대 3자리 수까지만 다룰 수 있습니다!');
+      throw CustomError.DIGITS;
     }
 
     if (num2 === 0) {
-      throw new Error('0으로 나눌 수는 없습니다!');
+      throw CustomError.DIVISION;
     }
 
     return Math.floor(num1 / num2);

@@ -1,4 +1,10 @@
-const { add, subtract, multiply, divide } = require("../src/Calculator");
+const {
+	add,
+	subtract,
+	multiply,
+	divide,
+	inputLimitThreeNumber,
+} = require("../src/Calculator");
 
 describe("Calculator-add", () => {
 	test("add-defalut", () => {
@@ -69,5 +75,15 @@ describe("Calculator-divide", () => {
 
 	test("divide-float-cut", () => {
 		expect(divide(1.1, 1.1)).toBe(1);
+	});
+});
+
+describe("input is just a three-digit number", () => {
+	test("inputLimitThreeNumber-defalut", () => {
+		expect(() => inputLimitThreeNumber(123)).not.toThrow();
+	});
+
+	test("inputLimitThreeNumber-throw", () => {
+		expect(() => inputLimitThreeNumber(1234)).toThrow();
 	});
 });

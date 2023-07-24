@@ -1,22 +1,20 @@
 import Calculator from "../src";
 
+const calculator = new Calculator();
+
 test("2개의 숫자에 대해 덧셈이 가능하다.", () => {
-  const calculator = new Calculator();
   expect(calculator.sum(1, 2)).toBe(3);
 });
 
 test("2개의 숫자에 대해 뺄셈이 가능하다.", () => {
-  const calculator = new Calculator();
   expect(calculator.subtract(2, 1)).toBe(1);
 });
 
 test("2개의 숫자에 대해 곱셈이 가능하다.", () => {
-  const calculator = new Calculator();
   expect(calculator.multiply(2, 1)).toBe(2);
 });
 
 test("2개의 숫자에 대해 나눗셈이 가능하다.", () => {
-  const calculator = new Calculator();
   expect(calculator.divide(4, 2)).toBe(2);
   try {
     calculator.divide(2, 0);
@@ -27,7 +25,6 @@ test("2개의 숫자에 대해 나눗셈이 가능하다.", () => {
 });
 
 test("숫자는 한번에 최대 3자리 수까지만 다룰 수 있다.", () => {
-  const calculator = new Calculator();
   expect(calculator.divide(10, 5)).toBe(2);
   try {
     calculator.divide(1000, 5);
@@ -38,6 +35,5 @@ test("숫자는 한번에 최대 3자리 수까지만 다룰 수 있다.", () =>
 });
 
 test("계산 결과를 표현할 때 소수점 이하는 버림한다.", () => {
-  const calculator = new Calculator();
   expect(calculator.divide(10, 3)).toBe(3);
 });

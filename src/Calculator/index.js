@@ -10,6 +10,10 @@ class Calculator {
   multiply(a, b) {
     return Math.floor(a * b);
   }
+
+  divide(a, b) {
+    return Math.floor(a / b);
+  }
 }
 
 export default Calculator;

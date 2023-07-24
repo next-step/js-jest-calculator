@@ -37,3 +37,15 @@ describe("2개의 숫자에 대해 곱셈이 가능하다.", () => {
     expect(calculator.multiply(1, 1)).toBe(1);
   });
 });
+
+describe("2개의 숫자에 대해 나눗셈이 가능하다.", () => {
+  test("3.2와 2의 나눗셈은 1이다.", () => {
+    expect(calculator.divide(3.2, 2)).toBe(1);
+  });
+  test("-1과 1의 나눗셈은 -1이다.", () => {
+    expect(calculator.divide(-1, 1)).toBe(-1);
+  });
+  test("1과 1의 나눗셈은 1이다.", () => {
+    expect(calculator.divide(1, 1)).toBe(1);
+  });
+});

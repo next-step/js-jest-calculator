@@ -1,29 +1,23 @@
 export default class Calculator {
-  constructor(calculatedNumber, isValidNumber) {
-    this.calculatedNumber = calculatedNumber;
-    this.isValidNumber = isValidNumber;
+  constructor() {
+    this.operators = {
+      add: (number1, number2) => number1 + number2,
+      substract: (number1, number2) => number1 - number2,
+      multiply: (number1, number2) => number1 * number2,
+      divide: (number1, number2) => {
+        if (number2 === 0) throw new Error("0으로 나눌 수 없습니다.");
+        return number1 / number2;
+      },
+    };
   }
 
-  addNumber(number1, number2) {
-    this.validateNumberLength(number1, number2);
-    return Math.floor(number1 + number2);
-  }
-
-  substractNumber(number1, number2) {
-    this.validateNumberLength(number1, number2);
-    return Math.floor(number1 - number2);
-  }
-
-  multiplyNumber(number1, number2) {
-    this.validateNumberLength(number1, number2);
-    return Math.floor(number1 * number2);
-  }
-
-  divideNumber(number1, number2) {
-    if (number2 === 0) throw new Error("0으로는 나눌 수 없습니다.");
+  calculate(operator, number1, number2) {
+    if (!this.operators[operator]) {
+      throw new Error("현재 지원하지 않는 연산자입니다.");
+    }
 
     this.validateNumberLength(number1, number2);
-    return Math.floor(number1 / number2);
+    return Math.floor(this.operators[operator](number1, number2));
   }
 
   validateNumberLength(number1, number2) {

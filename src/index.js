@@ -1,6 +1,6 @@
 class Calculator {
-  valid(...nums) {
-    nums.forEach((num) => {
+  valid(a, b) {
+    [a, b].forEach((num) => {
       if (num.toString().length > 3) {
         throw new Error("숫자는 최대 3자리까지만 작성 가능하다.");
       }

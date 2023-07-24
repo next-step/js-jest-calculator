@@ -36,4 +36,7 @@ describe('Calculator', () => {
   it('Floor 1 / 2 to equal 0', () => {
     expect(calculator.divide(1, 2)).toBe(0);
   });
+  it('Floor 1 - 1.5 to equal -1', () => {
+    expect(calculator.subtract(1, 1.5)).toBe(-1);
+  });
 });

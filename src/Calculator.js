@@ -1,3 +1,5 @@
+import { DIGITS, OPERATORS, ERROR_MESSAGES } from "./constants";
+
 export class Calculator {
   a = null;
   b = null;
@@ -7,20 +9,25 @@ export class Calculator {
   constructor() {}
 
   add(a, b) {
-    this.#checkTypeIsNumber(a, b);
-    this.result = a + b;
+    this.#throwErrorWhenTypeIsNotNumber(a, b);
+    return a + b;
   }
   minus(a, b) {
-    this.#checkTypeIsNumber(a, b);
-    this.result = a - b;
+    this.#throwErrorWhenTypeIsNotNumber(a, b);
+    return a - b;
   }
   multiply(a, b) {
-    this.#checkTypeIsNumber(a, b);
-    this.result = a * b;
+    this.#throwErrorWhenTypeIsNotNumber(a, b);
+    return a * b;
   }
   divide(a, b) {
-    this.#checkTypeIsNumber(a, b);
-    this.result = a / b;
+    this.#throwErrorWhenTypeIsNotNumber(a, b);
+
+    if (b === 0) {
+      throw new Error(ERROR_MESSAGES.CAN_NOT_DIVIDE_ZERO_IN_DENOMINATOR);
+    }
+
+    return a / b;
   }
 
   pressNumber(aNumber) {
@@ -42,7 +49,6 @@ export class Calculator {
     if (this.#checkIsOperator(aOperator)) {
       throw Error(ERROR_MESSAGES.PRESS_ONLY_OPERATOR);
     }
-    
     this.operator = aOperator;
   }
 
@@ -52,21 +58,23 @@ export class Calculator {
       "-": this.minus,
       "*": this.multiply,
       "/": this.divide,
-    }[this.operator](this.a, this.b);
+    }[this.operator].call(this, this.a, this.b);
+
+    this.showResult();
   }
 
   showResult() {
     return Math.floor(this.result);
   }
 
-  #checkTypeIsNumber(...numbers) {
-    for (let aNumber of numbers) {
-      if (typeof aNumber !== "number") {
-        throw Error(ERROR_MESSAGES.NOT_TYPE_NUMBER);
-      }
+  #throwErrorWhenTypeIsNotNumber(...numbers) {
+    if (!this.#checkTypeIsNumber(...numbers)) {
+      throw Error(ERROR_MESSAGES.TYPE_IS_NOT_NUMBER);
     }
+  }
 
-    return numbers;
+  #checkTypeIsNumber(...numbers) {
+    return numbers.every((aNumber) => typeof aNumber === "number");
   }
 
   #checkIsOperator(aOperator) {
@@ -84,16 +92,3 @@ export class Calculator {
     );
   }
 }
-
-const ERROR_MESSAGES = {
-  EXCEED_MAXIMUM_INPUT_NUMBERS:
-    "숫자는 한번에 최대 3자리 수까지만 다룰 수 있습니다.",
-  PRESS_ONLY_NUMBER: "숫자를 입력해주세요.",
-  PRESS_ONLY_OPERATOR: "연산자를 입력해주세요.",
-};
-
-const OPERATORS = ["*", "/", "+", "%", "-"];
-
-const DIGITS = Array(10)
-  .fill(0)
-  .map((v, i) => v + i);

@@ -25,3 +25,15 @@ describe("2개의 숫자에 대해 뺄셈이 가능하다.", () => {
     expect(calculator.subtract(1, 1)).toBe(0);
   });
 });
+
+describe("2개의 숫자에 대해 곱셈이 가능하다.", () => {
+  test("3.2와 2의 곱은 6이다.", () => {
+    expect(calculator.multiply(3.2, 2)).toBe(6);
+  });
+  test("-1과 1의 곱은 -1이다.", () => {
+    expect(calculator.multiply(-1, 1)).toBe(-1);
+  });
+  test("1과 1의 곱은 1이다.", () => {
+    expect(calculator.multiply(1, 1)).toBe(1);
+  });
+});

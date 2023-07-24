@@ -19,9 +19,9 @@ describe("2개의 숫자에 대해 뺄셈이 가능하다.", () => {
     expect(calculator.subtract(3.2, 2)).toBe(1);
   });
   test("-1과 1의 차는 -2이다.", () => {
-    expect(calculator.sum(-1, 1)).toBe(-2);
+    expect(calculator.subtract(-1, 1)).toBe(-2);
   });
   test("1과 1의 차는 0이다.", () => {
-    expect(calculator.sum(1, 1)).toBe(0);
+    expect(calculator.subtract(1, 1)).toBe(0);
   });
 });

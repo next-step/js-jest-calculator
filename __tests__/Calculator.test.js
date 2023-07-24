@@ -2,6 +2,15 @@ import Calculator from "../src";
 
 const calculator = new Calculator();
 
+test("숫자만 계산이 가능하다.", () => {
+  try {
+    expect(calculator.sum("1", "2"));
+    throw new Error("함수에서 에러가 발생하지 않았다.");
+  } catch (e) {
+    expect(e.message).toBe("숫자 타입이 아닙니다.");
+  }
+});
+
 test("2개의 숫자에 대해 덧셈이 가능하다.", () => {
   expect(calculator.sum(1, 2)).toBe(3);
 });

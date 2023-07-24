@@ -1,6 +1,9 @@
 class Calculator {
   valid(a, b) {
     [a, b].forEach((num) => {
+      if (typeof num !== "number") {
+        throw new Error("숫자 타입이 아닙니다.");
+      }
       if (num.toString().length > 3) {
         throw new Error("숫자는 최대 3자리까지만 작성 가능하다.");
       }

@@ -1,4 +1,6 @@
 class Calculator {
+  #MAX_DIGITS = 1_000;
+
   sum(num1, num2) {
     if (!this.validate(num1, num2)) {
       throw new Error('숫자는 한번에 최대 3자리 수까지만 다룰 수 있습니다!');
@@ -32,7 +34,7 @@ class Calculator {
   }
 
   validate(num1, num2) {
-    return num1 < 1000 && num2 < 1000;
+    return num1 < this.#MAX_DIGITS && num2 < this.#MAX_DIGITS;
   }
 }
 

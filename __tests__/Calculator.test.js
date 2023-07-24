@@ -1,8 +1,6 @@
-import { Calculator } from '../src';
+import calculator from '../src/Calculator.js';
 
 describe('Calculator', () => {
-  const calculator = new Calculator();
-
   // 2개의 숫자에 대해 덧셈이 가능하다.
   it('Adds 1 + 2 to equal 3', () => {
     expect(calculator.sum(1, 2)).toBe(3);

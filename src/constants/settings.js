@@ -1,5 +1,5 @@
 // 계산기 세팅 관련 상수
-export const DECIMAL_PLACE = 3;
+export const DECIMAL_PLACE = 0;
 export const MAX_OPERAND_LENGTH = 3;
 
 // 계산기 제공 연산자

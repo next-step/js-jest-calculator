@@ -28,24 +28,24 @@ export default class Calculator {
     }
   }
 
-  _validate_ouput(result) {
-    if (Number.isNaN(result) || result === POS_INF || result === NEG_INF) {
+  _validate_output(output) {
+    if (Number.isNaN(output) || output === POS_INF || output === NEG_INF) {
       throw new Error(ERROR_MESSAGE.INVALID_RESULT);
     }
 
     return;
   }
 
-  _adjust_output(result) {
-    if (Object.is(result, NEG_ZERO)) {
+  _adjust_output(output) {
+    if (Object.is(output, NEG_ZERO)) {
       return POS_ZERO;
     }
 
-    return result.toFixed(DECIMAL_PLACE);
+    return output.toFixed(DECIMAL_PLACE);
   }
 
-  _display(result) {
-    console.log(result);
+  _display(output) {
+    console.log(output);
   }
 
   calculate(operand1, operand2, operator) {

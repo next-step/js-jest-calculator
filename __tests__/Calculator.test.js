@@ -127,21 +127,33 @@ describe("피연산자 두 개와 연산자 하나의 연산 결과를 반환한
   });
 });
 
-// feature 3 : 사칙 연산 결과 유효성 검사 및 변환
-describe("유효하지 않은 연산 결과가 나오면, 오류 처리한다.", () => {
+// feature 3 : 사칙 연산 결과 유효성 검사
+describe("유효하지 않은 연산 결과가 나오면, 오류 메시지를 반환한다.", () => {
   it("연산 결과 NaN인 경우, 오류 메시지를 반환한다.", () => {
-    expect(() => calculator._validate_ouput(NaN)).toThrow(
+    expect(() => calculator._validate_output(NaN)).toThrow(
       ERROR_MESSAGE.INVALID_RESULT
     );
   });
 
   it("연산 결과 -Infinity/Infinity인 경우, 오류 메시지를 반환한다.", () => {
-    expect(() => calculator._validate_ouput(NEG_INF)).toThrow(
+    expect(() => calculator._validate_output(NEG_INF)).toThrow(
       ERROR_MESSAGE.INVALID_RESULT
     );
-    expect(() => calculator._validate_ouput(POS_INF)).toThrow(
+    expect(() => calculator._validate_output(POS_INF)).toThrow(
       ERROR_MESSAGE.INVALID_RESULT
     );
+  });
+
+  it("올바른 연산 결과라면, 오류를 반환하지 않는다.", () => {
+    const int_pos_output = 123;
+    const int_neg_output = -123;
+    const float_pos_output = 123.456;
+    const float_neg_output = -123.456;
+
+    expect(() => calculator._validate_output(int_pos_output)).not.toThrow();
+    expect(() => calculator._validate_output(int_neg_output)).not.toThrow();
+    expect(() => calculator._validate_output(float_pos_output)).not.toThrow();
+    expect(() => calculator._validate_output(float_neg_output)).not.toThrow();
   });
 });
 

@@ -24,6 +24,21 @@ class Calculator {
     return num;
   }
 
+  #parseAndValidateInput(input) {
+    const parsed = this.#parseInput(input);
+    if (parsed.errorMessage) return parsed;
+
+    return this.#validateNumberRange(parsed);
+  }
+
+  #prepareInputs(num1, num2) {
+    num1 = this.#parseAndValidateInput(num1);
+    num2 = this.#parseAndValidateInput(num2);
+    if (num1.errorMessage || num2.errorMessage) return { ...num1, ...num2 };
+
+    return [num1, num2];
+  }
+
   add(num1, num2) {
     return Math.floor(num1 + num2);
   }

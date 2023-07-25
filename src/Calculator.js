@@ -44,6 +44,4 @@ class Calculator {
   }
 }
 
-const calculator = new Calculator();
-
-export default calculator;
+export default Calculator;

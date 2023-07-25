@@ -1,4 +1,6 @@
-import calculator from './Calculator.js';
+import Calculator from './Calculator.js';
+
+const calculator = new Calculator();
 
 console.log(calculator.sum(1, 2));
 console.log(calculator.subtract(1, 2));

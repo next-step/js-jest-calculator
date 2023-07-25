@@ -1,5 +1,7 @@
-import calculator from '../src/Calculator.js';
+import Calculator from '../src/Calculator.js';
 import CustomError from '../src/Error.js';
+
+const calculator = new Calculator();
 
 describe('Calculator', () => {
   // 2개의 숫자에 대해 덧셈이 가능하다.

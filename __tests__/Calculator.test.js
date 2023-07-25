@@ -29,7 +29,7 @@ describe("덧셈 테스트", () => {
   test("실수 숫자 덧셈 테스트", () => {
     expect(() => sum([12.5, 10.1])).toThrowError(); //12.5는 소수점까지 4자리 수로 봄
     expect(() => sum([9.9, 999])).toThrowError();
-    expect(() => sum(9.9, 0.5)).toBe(10);
+    expect(sum([9.9, 0.5])).toBe(10);
   });
 
   test("'-' 포함한 숫자 테스트", () => {
@@ -76,8 +76,8 @@ describe("뺄셈 테스트", () => {
   test("실수 숫자 뺄셈 테스트", () => {
     expect(() => subtract([12.5, 10.1])).toThrowError(); //12.5는 소수점까지 4자리 수로 봄
     expect(() => subtract([9.9, 999])).toThrowError();
-    expect(() => subtract([9.9, 0.5])).toBe(10);
-    expect(() => subtract([999, 9.9])).toBe(989);
+    expect(subtract([9.9, 0.5])).toBe(9);
+    expect(subtract([999, 9.9])).toBe(989);
   });
 
   test("'-' 포함한 숫자 테스트", () => {

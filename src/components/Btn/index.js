@@ -1,4 +1,4 @@
-export default function Btn({ $target, $text }) {
+export default function Btn({ $target, $text, $onClick }) {
 	const $btn = document.createElement("button");
 	$btn.textContent = $text;
 
@@ -8,7 +8,7 @@ export default function Btn({ $target, $text }) {
 
 	const registerEvent = () => {
 		$btn.addEventListener("click", () => {
-			console.log("click");
+			$onClick();
 		});
 	};
 

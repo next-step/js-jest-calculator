@@ -19,7 +19,8 @@ export default function InputContainer({
 		$target.appendChild($inputContainer);
 	};
 
-	const numberArr = Array.from({ length: 10 }, (_, i) => i);
+	const numberArr = Array.from({ length: 9 }, (_, i) => i + 1);
+	numberArr.push(0);
 
 	numberArr.forEach((num) => {
 		new Btn({

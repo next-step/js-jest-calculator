@@ -32,10 +32,18 @@ export default function BtnContainer({ $target, $onResult }) {
 		$onResult(this.state.operation);
 	};
 
+	const typeIcon = {
+		add: "+",
+		subtract: "-",
+		multiply: "x",
+		divide: "/",
+		result: "=",
+	};
+
 	operatorType.forEach((type) => {
-		new Btn({
+		const btn = new Btn({
 			$target: $btnContainer,
-			$text: `${type} 버튼`,
+			$text: `${typeIcon[type]}`,
 			$onClick: () => onSetOperationType(type),
 		});
 	});

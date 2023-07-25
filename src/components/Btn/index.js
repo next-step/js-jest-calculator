@@ -1,5 +1,6 @@
+import { createEl } from "@/utils/createEl.js";
 export default function Btn({ $target, $text, $onClick }) {
-	const $btn = document.createElement("button");
+	const $btn = createEl("button", "btn");
 	$btn.textContent = $text;
 
 	this.render = () => {

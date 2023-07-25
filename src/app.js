@@ -1,4 +1,5 @@
 import { createEl } from "@/utils/createEl";
+import { $ } from "@/utils/selector.js";
 import BtnContainer from "@/components/BtnContainer";
 import InputContainer from "@/components/InputContainer";
 
@@ -11,19 +12,26 @@ import {
 } from "@/Calculator";
 
 export default function App({ $target }) {
-	const $app = createEl("div", "App");
+	this.$app = createEl("div", "App");
+	const $outPannel = createEl("div", "outPannel");
+
+	this.$app.appendChild($outPannel);
+
 	const $input = createEl("div", "input");
 	const $beforeNum = createEl("div", "beforeNum");
-	const $result = createEl("div", "result");
-	$app.appendChild($result);
-	$app.appendChild($input);
-	$app.appendChild($beforeNum);
+	const $result = createEl("div", "result hidden");
+	$outPannel.appendChild($beforeNum);
+	$outPannel.appendChild($input);
+	$outPannel.appendChild($result);
+
+	const $inputPannel = createEl("div", "inputPannel");
+	this.$app.appendChild($inputPannel);
 
 	this.state = {
 		input: 0,
 		beforeNum: 0,
 		result: 0,
-		isWrite: false,
+		isWrite: true,
 	};
 
 	this.setState = (nextState) => {
@@ -36,12 +44,19 @@ export default function App({ $target }) {
 		console.log("App init");
 		this.render();
 	};
+
 	this.render = () => {
-		$target.appendChild($app);
+		$target.appendChild(this.$app);
+
 		if (!this.state.isWrite) {
+			$result.classList.remove("hidden");
+			$input.classList.add("hidden");
+			$beforeNum.classList.add("hidden");
 			$result.textContent = this.state.result;
 		} else {
-			$result.textContent = "안보여";
+			$input.classList.remove("hidden");
+			$beforeNum.classList.remove("hidden");
+			$result.classList.add("hidden");
 		}
 		$input.textContent = this.state.input;
 		$beforeNum.textContent = this.state.beforeNum;
@@ -63,7 +78,6 @@ export default function App({ $target }) {
 	};
 
 	const onResult = (operatorType, result = false) => {
-		console.log("onResult", operatorType, result);
 		if (!operatorType) {
 			console.log("연산자를 먼저 입력해주세요."); // alert로 바꿔야함
 			return;
@@ -81,7 +95,7 @@ export default function App({ $target }) {
 			return;
 		}
 
-		if (this.state.beforeNum === 0 || isFinite(this.state.beforeNum)) {
+		if (this.state.beforeNum === 0) {
 			this.setState({
 				...this.state,
 				beforeNum: this.state.input,
@@ -91,6 +105,12 @@ export default function App({ $target }) {
 		}
 
 		const calculated = calculateOperand(operatorType);
+
+		if (isFinite(calculated) === false) {
+			console.log("0으로 나눌 수 없습니다."); // alert로 바꿔야함
+			return;
+		}
+
 		this.setState({
 			...this.state,
 			beforeNum: calculated,
@@ -103,7 +123,7 @@ export default function App({ $target }) {
 	 * 입력받은 숫자 결과를 출력하는 컴포넌트
 	 */
 	const btnContainer = new BtnContainer({
-		$target: $app,
+		$target: $inputPannel,
 		$onResult: onResult,
 	});
 
@@ -137,12 +157,13 @@ export default function App({ $target }) {
 	};
 
 	const inputContainer = new InputContainer({
-		$target: $app,
+		$target: $inputPannel,
 		$initialState: this.state.numStack,
 		$onClick: onInputClick,
 		$onReset: onInputReset,
 	});
 
+	this.init();
 	inputContainer.render();
 	btnContainer.render();
 }

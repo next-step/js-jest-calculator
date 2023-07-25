@@ -21,8 +21,22 @@ describe("덧셈 테스트", () => {
     expect(() => sum([999, 999])).toThrowError();
   });
 
+  test("네 자리 이상 숫자 덧셈 테스트", () => {
+    expect(() => sum([1000, 1000])).toThrowError();
+    expect(() => sum([9999, 9999])).toThrowError();
+  });
+
   test("실수 숫자 덧셈 테스트", () => {
-    expect(sum([12.5, 10.1])).toBe(22);
+    expect(() => sum([12.5, 10.1])).toThrowError(); //12.5는 소수점까지 4자리 수로 봄
+    expect(() => sum([9.9, 999])).toThrowError();
+    expect(() => sum(9.9, 0.5)).toBe(10);
+  });
+
+  test("'-' 포함한 숫자 테스트", () => {
+    expect(() => sum([-999, 0])).toThrowError();
+    expect(sum([-99, 999])).toBe(900);
+    expect(sum([-0, -0])).toBe(0);
+    expect(sum([-10, -10])).toBe(-20);
   });
 
   test("문자를 입력한 경우 에러가 발생한다", () => {

@@ -40,21 +40,42 @@ class Calculator {
   }
 
   add(num1, num2) {
-    return Math.floor(num1 + num2);
+    const preparedInput = this.#prepareInputs(num1, num2);
+
+    if (preparedInput.errorMessage) return preparedInput;
+    const [preparedNum1, preparedNum2] = preparedInput;
+
+    return Math.floor(preparedNum1 + preparedNum2);
   }
 
   subtract(num1, num2) {
-    return Math.floor(num1 - num2);
+    const preparedInput = this.#prepareInputs(num1, num2);
+
+    if (preparedInput.errorMessage) return preparedInput;
+    const [preparedNum1, preparedNum2] = preparedInput;
+
+    return Math.floor(preparedNum1 - preparedNum2);
   }
 
   multiply(num1, num2) {
-    return Math.floor(num1 * num2);
+    const preparedInput = this.#prepareInputs(num1, num2);
+
+    if (preparedInput.errorMessage) return preparedInput;
+    const [preparedNum1, preparedNum2] = preparedInput;
+
+    return Math.floor(preparedNum1 * preparedNum2);
   }
 
   divide(num1, num2) {
-    if (num2 === 0) {
-      return Calculator.ERRORS.DIVIDE_BY_ZERO;
-    }
-    return Math.floor(num1 / num2);
+    const parsedAndValidatedNum2 = this.#parseAndValidateInput(num2);
+    if (parsedAndValidatedNum2 === 0) return Calculator.ERRORS.DIVIDE_BY_ZERO;
+
+    const preparedInput = this.#prepareInputs(num1, num2);
+    if (preparedInput.errorMessage) return preparedInput;
+    const [preparedNum1, preparedNum2] = preparedInput;
+
+    return Math.floor(preparedNum1 / preparedNum2);
   }
 }
+
+export default Calculator;

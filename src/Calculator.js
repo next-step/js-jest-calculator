@@ -14,6 +14,14 @@ export const subtract = (nList) => {
   );
 };
 
+export const multiply = (nList) => {
+  validateInputType(nList);
+  validateInputLength(nList);
+  return validateReturnLength(
+    Math.floor(nList.reduce((acc, cur) => acc * cur, 1))
+  );
+};
+
 const validateInputType = (nList) => {
   for (const n of nList) {
     if (typeof n !== "number") throw new Error("계산기에 숫자만 입력해주세요.");

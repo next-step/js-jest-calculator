@@ -4,7 +4,18 @@ class Calculator {
     INVALID_INPUT: {
       errorMessage: "한번에 최대 3자리 수까지 입력할 수 있습니다",
     },
+    NOT_A_NUMBER: { errorMessage: "숫자가 아닙니다" },
   };
+
+  #parseInput(input) {
+    if (typeof input === "number") return input;
+
+    const parsedNumber = Number(input);
+    if (isNaN(parsedNumber)) {
+      return Calculator.ERRORS.NOT_A_NUMBER;
+    }
+    return parsedNumber;
+  }
 
   #validateNumberRange(num) {
     if (num < 0 || num > 999) {

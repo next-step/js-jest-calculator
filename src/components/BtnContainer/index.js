@@ -71,10 +71,4 @@ export default function BtnContainer({ $target, $initialState, $onClick }) {
 			// operation(this.state, add);
 		},
 	});
-
-	plusBtn.render();
-	subtractBtn.render();
-	multiplyBtn.render();
-	divideBtn.render();
-	resultBtn.render();
 }

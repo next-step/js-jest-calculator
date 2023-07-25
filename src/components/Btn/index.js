@@ -6,11 +6,16 @@ export default function Btn({ $target, $text, $onClick }) {
 		$target.appendChild($btn);
 	};
 
+	const init = () => {
+		this.render();
+	};
+
 	const registerEvent = () => {
 		$btn.addEventListener("click", () => {
 			$onClick();
 		});
 	};
 
+	init();
 	registerEvent();
 }

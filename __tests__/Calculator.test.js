@@ -66,4 +66,11 @@ describe("Calculator", () => {
     );
     expect(calculator.divide(1000, 2)).toEqual(Calculator.ERRORS.INVALID_INPUT);
   });
+
+  test("계산 결과를 표현할 때 소수점 이하는 버림한다", () => {
+    expect(calculator.add(1.2, 2.3)).toBe(3);
+    expect(calculator.subtract(2.3, 1.2)).toBe(1);
+    expect(calculator.multiply(2, 2.3)).toBe(4);
+    expect(calculator.divide(7, 2)).toBe(3);
+  });
 });

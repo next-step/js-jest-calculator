@@ -4,7 +4,7 @@ class Calculator {
   #MAX_DIGITS = 1_000;
 
   sum(num1, num2) {
-    if (!this.validate(num1, num2)) {
+    if (!this.isValid(num1, num2)) {
       throw CustomError.DIGITS;
     }
 
@@ -12,7 +12,7 @@ class Calculator {
   }
 
   subtract(num1, num2) {
-    if (!this.validate(num1, num2)) {
+    if (!this.isValid(num1, num2)) {
       throw CustomError.DIGITS;
     }
 
@@ -20,7 +20,7 @@ class Calculator {
   }
 
   multiply(num1, num2) {
-    if (!this.validate(num1, num2)) {
+    if (!this.isValid(num1, num2)) {
       throw CustomError.DIGITS;
     }
 
@@ -28,7 +28,7 @@ class Calculator {
   }
 
   divide(num1, num2) {
-    if (!this.validate(num1, num2)) {
+    if (!this.isValid(num1, num2)) {
       throw CustomError.DIGITS;
     }
 
@@ -42,7 +42,7 @@ class Calculator {
   // Float operation toFixed(2) b/c Not Exact operation for computer
 
   fsum(num1, num2) {
-    if (!this.validate(num1, num2)) {
+    if (!this.isValid(num1, num2)) {
       throw CustomError.DIGITS;
     }
 
@@ -50,7 +50,7 @@ class Calculator {
   }
 
   fsubtract(num1, num2) {
-    if (!this.validate(num1, num2)) {
+    if (!this.isValid(num1, num2)) {
       throw CustomError.DIGITS;
     }
 
@@ -58,7 +58,7 @@ class Calculator {
   }
 
   fmultiply(num1, num2) {
-    if (!this.validate(num1, num2)) {
+    if (!this.isValid(num1, num2)) {
       throw CustomError.DIGITS;
     }
 
@@ -66,7 +66,7 @@ class Calculator {
   }
 
   fdivide(num1, num2) {
-    if (!this.validate(num1, num2)) {
+    if (!this.isValid(num1, num2)) {
       throw CustomError.DIGITS;
     }
 
@@ -77,7 +77,7 @@ class Calculator {
     return Number((num1 / num2).toFixed(2));
   }
 
-  validate(num1, num2) {
+  isValid(num1, num2) {
     return num1 < this.#MAX_DIGITS && num2 < this.#MAX_DIGITS;
   }
 }

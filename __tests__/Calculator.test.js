@@ -24,4 +24,15 @@ describe("Calculator", () => {
       Calculator.ERRORS.INVALID_INPUT
     );
   });
+
+  test("2개의 숫자에 대해 곱셈이 가능하다", () => {
+    expect(calculator.multiply(2, 3)).toBe(6);
+    expect(calculator.multiply("100", "200")).toBe(20000);
+    expect(calculator.multiply("abc", 2)).toEqual(
+      Calculator.ERRORS.NOT_A_NUMBER
+    );
+    expect(calculator.multiply(1000, 2)).toEqual(
+      Calculator.ERRORS.INVALID_INPUT
+    );
+  });
 });

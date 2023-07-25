@@ -1,5 +1,19 @@
 // 계산기 세팅 관련 상수
 export const DECIMAL_PLACE = 3;
+export const MAX_OPERAND_LENGTH = 3;
+
+// 계산기 제공 연산자
+const ADD = "+";
+const SUBTRACT = "-";
+const MULTIPLY = "*";
+const DIVIDE = "/";
+
+export const OPERATORS = {
+  ADD,
+  SUBTRACT,
+  MULTIPLY,
+  DIVIDE,
+};
 
 // 계산기 출력 가능 오류 메시지
 const INVALID_OPERATOR = "연산자 형태가 유효하지 않습니다.";

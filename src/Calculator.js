@@ -1,5 +1,10 @@
 import { POS_ZERO, NEG_ZERO, POS_INF, NEG_INF } from "./constants/numbers";
-import { DECIMAL_PLACE, ERROR_MESSAGE } from "./constants/settings";
+import {
+  DECIMAL_PLACE,
+  ERROR_MESSAGE,
+  MAX_OPERAND_LENGTH,
+} from "./constants/settings";
+import { operate } from "./operations";
 
 export default class Calculator {
   _get_digits(operand) {
@@ -16,30 +21,14 @@ export default class Calculator {
     }
 
     if (
-      this._get_digits(operand1) > DECIMAL_PLACE ||
-      this._get_digits(operand2) > DECIMAL_PLACE
+      this._get_digits(operand1) > MAX_OPERAND_LENGTH ||
+      this._get_digits(operand2) > MAX_OPERAND_LENGTH
     ) {
       throw new Error(ERROR_MESSAGE.LONG_OPERAND);
     }
   }
 
-  _add(operand1, operand2) {
-    return operand1 + operand2;
-  }
-
-  _subtract(operand1, operand2) {
-    return operand1 - operand2;
-  }
-
-  _multiply(operand1, operand2) {
-    return operand1 * operand2;
-  }
-
-  _divide(operand1, operand2) {
-    return operand1 / operand2;
-  }
-
-  _validate_ouptut(result) {
+  _validate_ouput(result) {
     if (Number.isNaN(result) || result === POS_INF || result === NEG_INF) {
       throw new Error(ERROR_MESSAGE.INVALID_RESULT);
     }
@@ -65,22 +54,7 @@ export default class Calculator {
 
       this._validate_operands(operand1, operand2);
 
-      switch (operator) {
-        case "+":
-          result = this._add(operand1, operand2);
-          break;
-        case "-":
-          result = this._subtract(operand1, operand2);
-          break;
-        case "*":
-          result = this._multiply(operand1, operand2);
-          break;
-        case "/":
-          result = this._divide(operand1, operand2);
-          break;
-        default:
-          throw new Error(ERROR_MESSAGE.INVALID_OPERATOR);
-      }
+      operate(operator, operand1, operand2);
 
       this._validate_output(result);
 

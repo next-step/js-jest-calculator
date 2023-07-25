@@ -1,4 +1,4 @@
-import { get_digits } from "./utils/numbers";
+import { getDigits } from "./utils/numbers";
 import { POS_ZERO, NEG_ZERO, POS_INF, NEG_INF } from "./constants/numbers";
 import {
   DECIMAL_PLACE,
@@ -8,7 +8,7 @@ import {
 import { operate } from "./operations";
 
 export default class Calculator {
-  _validate_operands(operand1, operand2) {
+  _validateOperands(operand1, operand2) {
     if (operand1 === "" || operand2 === "") {
       throw new Error(ERROR_MESSAGE.EMPTY_OPERAND);
     }
@@ -18,14 +18,14 @@ export default class Calculator {
     }
 
     if (
-      get_digits(operand1) > MAX_OPERAND_LENGTH ||
-      get_digits(operand2) > MAX_OPERAND_LENGTH
+      getDigits(operand1) > MAX_OPERAND_LENGTH ||
+      getDigits(operand2) > MAX_OPERAND_LENGTH
     ) {
       throw new Error(ERROR_MESSAGE.LONG_OPERAND);
     }
   }
 
-  _validate_output(output) {
+  _validateOutput(output) {
     if (Number.isNaN(output) || output === POS_INF || output === NEG_INF) {
       throw new Error(ERROR_MESSAGE.INVALID_RESULT);
     }
@@ -33,7 +33,7 @@ export default class Calculator {
     return;
   }
 
-  _adjust_output(output) {
+  _adjustOutput(output) {
     if (Object.is(output, NEG_ZERO)) {
       return POS_ZERO;
     }

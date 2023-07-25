@@ -1,5 +1,6 @@
 // webpack.config.js
 const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -14,13 +15,8 @@ module.exports = {
 			template: "./src/index.html",
 			filename: "index.html",
 		}),
+		new CleanWebpackPlugin(),
 	],
-	devServer: {
-		static: path.join(__dirname, "dist"),
-		compress: true,
-		port: 3000,
-		hot: true,
-	},
 	resolve: {
 		extensions: [".js", ".mjs"],
 		alias: {

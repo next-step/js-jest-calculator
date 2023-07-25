@@ -157,3 +157,26 @@ describe("사칙연산 결과를 조정하여 반환한다.", () => {
     );
   });
 });
+
+// feature 5 : 결과 콘솔 출력
+describe("결과를 콘솔에 출력한다.", () => {
+  const spyFn = jest.spyOn(global.console, "log");
+
+  afterEach(() => {
+    spyFn.mockClear();
+  });
+
+  it("연산 결과가 콘솔에 출력된다.", () => {
+    calculator._display(POS_INT);
+
+    expect(spyFn).toBeCalledTimes(1);
+    expect(spyFn).toBeCalledWith(POS_INT);
+  });
+
+  it("오류 메시지가 콘솔에 출력된다.", () => {
+    calculator._display(ERROR_MESSAGE.INVALID_RESULT);
+
+    expect(spyFn).toBeCalledTimes(1);
+    expect(spyFn).toBeCalledWith(ERROR_MESSAGE.INVALID_RESULT);
+  });
+});

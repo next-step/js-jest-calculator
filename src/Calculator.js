@@ -47,15 +47,15 @@ export default class Calculator {
 
   calculate(operand1, operand2, operator) {
     try {
-      let result = 0;
+      let output = 0;
 
       this._validate_operands(operand1, operand2);
 
       operate(operator, operand1, operand2);
 
-      this._validate_output(result);
+      this._validate_output(output);
 
-      this._display(this._adjust_output(result));
+      this._display(this._adjust_output(output));
     } catch (error) {
       this._display(error.message);
     }

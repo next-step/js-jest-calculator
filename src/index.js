@@ -1,19 +1,40 @@
-class Calculator {
-  add(a, b) {
-    return a + b;
-  }
-
-  subtract(a, b) {
-    return a - b;
-  }
-
-  multiply(a, b) {
-    return a * b;
-  }
-
-  divide(a, b) {
-    return a / b;
+class InvalidOperandError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "InvalidOperandError";
   }
 }
 
-export { Calculator };
+class Calculator {
+  #checkOperand(operand) {
+    if (operand >= 1000) {
+      throw new InvalidOperandError("Too big number");
+    }
+  }
+
+  add(a, b) {
+    this.#checkOperand(a);
+    this.#checkOperand(b);
+    return Math.floor(a + b);
+  }
+
+  subtract(a, b) {
+    this.#checkOperand(a);
+    this.#checkOperand(b);
+    return Math.floor(a - b);
+  }
+
+  multiply(a, b) {
+    this.#checkOperand(a);
+    this.#checkOperand(b);
+    return Math.floor(a * b);
+  }
+
+  divide(a, b) {
+    this.#checkOperand(a);
+    this.#checkOperand(b);
+    return Math.floor(a / b);
+  }
+}
+
+export { Calculator, InvalidOperandError };

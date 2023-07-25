@@ -17,6 +17,8 @@
 // add function
 
 const add = (a, b) => {
+	console.log("add");
+	console.log(a, b);
 	return cutFloat(a + b);
 };
 

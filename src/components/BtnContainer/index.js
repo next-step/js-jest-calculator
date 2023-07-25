@@ -1,17 +1,17 @@
-import {
-	add,
-	subtract,
-	multiply,
-	divide,
-	inputLimitThreeNumber,
-} from "@/Calculator";
-
 import { createEl } from "@/utils/createEl";
 import Btn from "@/components/Btn";
-export default function BtnContainer({ $target, $initialState, $onClick }) {
+export default function BtnContainer({
+	$target,
+	$initialState,
+	$onClick,
+	$onSetIsOperation,
+	$onResult,
+}) {
 	const $btnContainer = createEl("div", "BtnContainer");
 
-	this.state = $initialState; // [0, 0]
+	this.state = {
+		operation: "",
+	};
 
 	this.setState = (nextState) => {
 		this.state = nextState;
@@ -22,53 +22,64 @@ export default function BtnContainer({ $target, $initialState, $onClick }) {
 		$target.appendChild($btnContainer);
 	};
 
-	const operation = (state, operator) => {
-		const [a, b] = state;
-		const result = operator(a, b);
-		$onClick(result);
-	};
-
-	const plusBtn = new Btn({
+	new Btn({
 		$target: $btnContainer,
 		$text: "더하기 버튼",
 		$onClick: () => {
 			console.log("add");
-			operation(this.state, add);
+			$onSetIsOperation(true);
+			this.setState({
+				...this.state,
+				operation: "add",
+			});
 		},
 	});
 
-	const subtractBtn = new Btn({
+	new Btn({
 		$target: $btnContainer,
 		$text: "뺄셈 버튼",
 		$onClick: () => {
 			console.log("subtract");
-			operation(this.state, subtract);
+			$onSetIsOperation(true);
+			this.setState({
+				...this.state,
+				operation: "subtract",
+			});
 		},
 	});
 
-	const multiplyBtn = new Btn({
+	new Btn({
 		$target: $btnContainer,
 		$text: "곱셈 버튼",
 		$onClick: () => {
 			console.log("multiply");
-			operation(this.state, multiply);
+			$onSetIsOperation(true);
+			this.setState({
+				...this.state,
+				operation: "multiply",
+			});
 		},
 	});
 
-	const divideBtn = new Btn({
+	new Btn({
 		$target: $btnContainer,
 		$text: "나눗셈 버튼",
 		$onClick: () => {
 			console.log("divide");
-			operation(this.state, divide);
+			$onSetIsOperation(true);
+			this.setState({
+				...this.state,
+				operation: "divide",
+			});
 		},
 	});
-	const resultBtn = new Btn({
+	new Btn({
 		$target: $btnContainer,
 		$text: "결과 버튼",
 		$onClick: () => {
+			if (this.state.operation === false) return;
 			console.log("result");
-			// operation(this.state, add);
+			$onResult(this.state.operation);
 		},
 	});
 }

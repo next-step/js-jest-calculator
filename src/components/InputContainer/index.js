@@ -22,7 +22,7 @@ export default function InputContainer({
 	const numberArr = Array.from({ length: 10 }, (_, i) => i);
 
 	numberArr.forEach((num) => {
-		const inputNum = new Btn({
+		new Btn({
 			$target: $inputContainer,
 			$text: num,
 			$onClick: () => {
@@ -32,7 +32,7 @@ export default function InputContainer({
 		});
 	});
 
-	const inputClear = new Btn({
+	new Btn({
 		$target: $inputContainer,
 		$text: "C",
 		$onClick: () => {
@@ -41,7 +41,7 @@ export default function InputContainer({
 		},
 	});
 
-	const inputDelete = new Btn({
+	new Btn({
 		$target: $inputContainer,
 		$text: "D",
 		$onClick: () => {

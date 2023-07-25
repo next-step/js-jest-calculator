@@ -5,10 +5,11 @@ export default function InputContainer({
 	$initialState,
 	$onClick,
 	$onReset,
+	$onDelete,
 }) {
 	const $inputContainer = createEl("div", "inputContainer");
 
-	this.state = $initialState; // [0, 0]
+	this.state = $initialState;
 
 	this.setState = (nextState) => {
 		this.state = nextState;
@@ -27,7 +28,6 @@ export default function InputContainer({
 			$target: $inputContainer,
 			$text: num,
 			$onClick: () => {
-				console.log(`input${num}`);
 				$onClick(num);
 			},
 		});
@@ -36,17 +36,12 @@ export default function InputContainer({
 	new Btn({
 		$target: $inputContainer,
 		$text: "C",
-		$onClick: () => {
-			console.log("inputClear");
-			$onReset();
-		},
+		$onClick: $onReset,
 	});
 
 	new Btn({
 		$target: $inputContainer,
 		$text: "D",
-		$onClick: () => {
-			console.log("inputDelete");
-		},
+		$onClick: $onDelete,
 	});
 }

@@ -37,11 +37,9 @@ export default function App({ $target }) {
 	this.setState = (nextState) => {
 		this.state = nextState;
 		this.render();
-		console.log(this.state);
 	};
 
 	this.init = () => {
-		console.log("App init");
 		this.render();
 	};
 
@@ -79,7 +77,7 @@ export default function App({ $target }) {
 
 	const onResult = (operatorType, result = false) => {
 		if (!operatorType) {
-			console.log("연산자를 먼저 입력해주세요."); // alert로 바꿔야함
+			alert("연산자를 먼저 입력해주세요.");
 			return;
 		}
 
@@ -91,7 +89,7 @@ export default function App({ $target }) {
 		}
 
 		if (this.state.input === 0 && this.state.beforeNum === 0) {
-			console.log("숫자를 먼저 입력해주세요."); // alert로 바꿔야함
+			alert("숫자를 먼저 입력해주세요.");
 			return;
 		}
 
@@ -107,7 +105,7 @@ export default function App({ $target }) {
 		const calculated = calculateOperand(operatorType);
 
 		if (isFinite(calculated) === false) {
-			console.log("0으로 나눌 수 없습니다."); // alert로 바꿔야함
+			alert("0으로 나눌 수 없습니다.");
 			return;
 		}
 
@@ -138,8 +136,7 @@ export default function App({ $target }) {
 		});
 
 		if (String(this.state.input).length > 2) {
-			console.log("숫자는 세자리까지만 입력 가능합니다."); // alert로 바꿔야함
-			console.log(this.state);
+			alert("숫자는 세자리까지만 입력 가능합니다.");
 			return;
 		}
 
@@ -153,6 +150,16 @@ export default function App({ $target }) {
 		this.setState({
 			...this.state,
 			input: 0,
+			beforeNum: 0,
+			result: 0,
+			isWrite: true,
+		});
+	};
+
+	const onInputDelete = () => {
+		this.setState({
+			...this.state,
+			input: Math.floor(this.state.input / 10),
 		});
 	};
 
@@ -161,6 +168,7 @@ export default function App({ $target }) {
 		$initialState: this.state.numStack,
 		$onClick: onInputClick,
 		$onReset: onInputReset,
+		$onDelete: onInputDelete,
 	});
 
 	this.init();

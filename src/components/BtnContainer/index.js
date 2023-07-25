@@ -41,7 +41,7 @@ export default function BtnContainer({ $target, $onResult }) {
 	};
 
 	operatorType.forEach((type) => {
-		const btn = new Btn({
+		new Btn({
 			$target: $btnContainer,
 			$text: `${typeIcon[type]}`,
 			$onClick: () => onSetOperationType(type),

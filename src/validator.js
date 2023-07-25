@@ -11,7 +11,7 @@ class Validator {
   }
 
   static isInvalidFormula(first, second, operation) {
-    if (['', undefined].includes(first) || ['', undefined].includes(second) || ['', undefined].includes(operation)) {
+    if (!first || !second || !operation) {
       throw ERROR_MESSAGE.INVALID_FORMULA;
     }
   }

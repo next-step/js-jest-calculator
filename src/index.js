@@ -9,10 +9,16 @@ const multiply = (first, second) => first * second;
 const divide = (first, second) => first / second;
 
 class Calculator {
+  #validator;
+
+  constructor() {
+    this.#validator = new Validator();
+  }
+
   calculate(first, second, operation) {
     let result = null;
     try {
-      Validator.validate(first, second, operation);
+      this.#validator.validate(first, second, operation);
       switch (operation) {
         case OPERATIONS.PLUS:
           result = sum(first, second);

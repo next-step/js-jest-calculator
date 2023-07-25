@@ -2,7 +2,7 @@ export const sum = (nList) => {
   validateInputType(nList);
   validateInputLength(nList);
   return validateReturnLength(
-    Math.floor(nList.reduce((acc, cur) => acc + cur, 0))
+    roundDown(nList.reduce((acc, cur) => acc + cur, 0))
   );
 };
 
@@ -10,7 +10,7 @@ export const subtract = (nList) => {
   validateInputType(nList);
   validateInputLength(nList);
   return validateReturnLength(
-    Math.floor(nList.reduce((acc, cur) => acc - cur, nList[0] * 2))
+    roundDown(nList.slice(1).reduce((acc, cur) => acc - cur, nList[0]))
   );
 };
 
@@ -18,8 +18,30 @@ export const multiply = (nList) => {
   validateInputType(nList);
   validateInputLength(nList);
   return validateReturnLength(
-    Math.floor(nList.reduce((acc, cur) => acc * cur, 1))
+    roundDown(nList.reduce((acc, cur) => acc * cur, 1))
   );
+};
+
+export const divide = (nList) => {
+  validateInputType(nList);
+  validateInputLength(nList);
+  checkDivideToZero(nList.slice(1));
+  return validateReturnLength(
+    roundDown(nList.slice(1).reduce((acc, cur) => acc / cur, nList[0]))
+  );
+};
+
+const roundDown = (n) => {
+  if (n > 0) return Math.floor(n) === -0 ? 0 : Math.floor(n);
+  return Math.ceil(n) === -0 ? 0 : Math.ceil(n);
+};
+
+const checkDivideToZero = (nList) => {
+  for (const n of nList) {
+    if (Math.abs(n) === 0) {
+      throw new Error("0으로 나눌 수 없습니다.");
+    }
+  }
 };
 
 const validateInputType = (nList) => {

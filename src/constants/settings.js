@@ -19,7 +19,7 @@ export const OPERATORS = {
 const INVALID_OPERATOR = "연산자 형태가 유효하지 않습니다.";
 const INVALID_OPERAND = "피연산자 형태가 유효하지 않습니다.";
 const EMPTY_OPERAND = "피연산자가 비어있습니다.";
-const LONG_OPERAND = "피연산자가 입력 가능 자릿수를 초과하였습니다.";
+const LONG_OPERAND = `피연산자가 입력 가능 자릿수(${MAX_OPERAND_LENGTH})를 초과하였습니다.`;
 const INVALID_RESULT = "계산 결과가 유효하지 않습니다.";
 
 export const ERROR_MESSAGE = {

@@ -1,3 +1,4 @@
+import { get_digits } from "./utils/numbers";
 import { POS_ZERO, NEG_ZERO, POS_INF, NEG_INF } from "./constants/numbers";
 import {
   DECIMAL_PLACE,
@@ -7,10 +8,6 @@ import {
 import { operate } from "./operations";
 
 export default class Calculator {
-  _get_digits(operand) {
-    return parseInt(Math.abs(operand)).toString().length;
-  }
-
   _validate_operands(operand1, operand2) {
     if (operand1 === "" || operand2 === "") {
       throw new Error(ERROR_MESSAGE.EMPTY_OPERAND);
@@ -21,8 +18,8 @@ export default class Calculator {
     }
 
     if (
-      this._get_digits(operand1) > MAX_OPERAND_LENGTH ||
-      this._get_digits(operand2) > MAX_OPERAND_LENGTH
+      get_digits(operand1) > MAX_OPERAND_LENGTH ||
+      get_digits(operand2) > MAX_OPERAND_LENGTH
     ) {
       throw new Error(ERROR_MESSAGE.LONG_OPERAND);
     }

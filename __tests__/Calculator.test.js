@@ -35,4 +35,24 @@ describe("Calculator", () => {
       Calculator.ERRORS.INVALID_INPUT
     );
   });
+
+  test("2개의 숫자에 대해 곱셈이 가능하다", () => {
+    expect(calculator.multiply(2, 3)).toBe(6);
+    expect(calculator.multiply("100", "200")).toBe(20000);
+    expect(calculator.multiply("abc", 2)).toEqual(
+      Calculator.ERRORS.NOT_A_NUMBER
+    );
+    expect(calculator.multiply(1000, 2)).toEqual(
+      Calculator.ERRORS.INVALID_INPUT
+    );
+  });
+
+  test("2개의 숫자에 대해 나눗셈이 가능하다", () => {
+    expect(calculator.divide(6, 3)).toBe(2);
+    expect(calculator.divide("200", "100")).toBe(2);
+    expect(calculator.divide("abc", 2)).toEqual(Calculator.ERRORS.NOT_A_NUMBER);
+    expect(calculator.divide(1000, 2)).toEqual(Calculator.ERRORS.INVALID_INPUT);
+    expect(calculator.divide(6, 0)).toEqual(Calculator.ERRORS.DIVIDE_BY_ZERO);
+    expect(calculator.divide(6, "0")).toEqual(Calculator.ERRORS.DIVIDE_BY_ZERO);
+  });
 });

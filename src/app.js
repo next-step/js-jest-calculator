@@ -22,8 +22,8 @@ export default function App({ $target }) {
 	this.state = {
 		input: 0,
 		beforeNum: 0,
-		isOperation: false,
 		result: 0,
+		isWrite: false,
 	};
 
 	this.setState = (nextState) => {
@@ -38,10 +38,15 @@ export default function App({ $target }) {
 	};
 	this.render = () => {
 		$target.appendChild($app);
-		$result.textContent = this.state.result;
+		if (!this.state.isWrite) {
+			$result.textContent = this.state.result;
+		} else {
+			$result.textContent = "안보여";
+		}
 		$input.textContent = this.state.input;
 		$beforeNum.textContent = this.state.beforeNum;
 	};
+
 	const operator = {
 		add,
 		subtract,
@@ -49,25 +54,49 @@ export default function App({ $target }) {
 		divide,
 	};
 
-	const getResult = (operatorType) => {
-		if (!operatorType) {
-			console.log("연산자를 먼저 입력해주세요."); // alert로 바꿔야함
-
-			return;
-		}
-
-		return operator[operatorType](
-			Number(this.state.beforeNum),
-			Number(this.state.input)
-		);
+	const calculateOperand = (operatorType) => {
+		return operator[operatorType](this.state.beforeNum, this.state.input);
 	};
 
 	const acc = (beforeNum, input) => {
-		if (beforeNum === 0) {
-			return input;
+		return input + beforeNum * 10;
+	};
+
+	const onResult = (operatorType, result = false) => {
+		console.log("onResult", operatorType, result);
+		if (!operatorType) {
+			console.log("연산자를 먼저 입력해주세요."); // alert로 바꿔야함
+			return;
 		}
 
-		return String(beforeNum) + String(input);
+		if (result) {
+			this.setState({
+				...this.state,
+				isWrite: false,
+			});
+		}
+
+		if (this.state.input === 0 && this.state.beforeNum === 0) {
+			console.log("숫자를 먼저 입력해주세요."); // alert로 바꿔야함
+			return;
+		}
+
+		if (this.state.beforeNum === 0 || isFinite(this.state.beforeNum)) {
+			this.setState({
+				...this.state,
+				beforeNum: this.state.input,
+				input: 0,
+			});
+			return;
+		}
+
+		const calculated = calculateOperand(operatorType);
+		this.setState({
+			...this.state,
+			beforeNum: calculated,
+			input: 0,
+			result: calculated,
+		});
 	};
 
 	/**
@@ -75,66 +104,43 @@ export default function App({ $target }) {
 	 */
 	const btnContainer = new BtnContainer({
 		$target: $app,
-		$initialState: {
-			input: 0,
-			beforeNum: 0,
-		},
-		$onResult: (operator) => {
-			console.log("결과");
-			const result = getResult(operator);
-			console.log(result);
-			this.setState({
-				...this.state,
-				beforeNum: String(result || ""),
-				input: 0,
-				result: result,
-				isOperation: false,
-			});
-		},
-		$onSetIsOperation: (isOperation) => {
-			if (this.state.isOperation) {
-				this.setState({
-					...this.state,
-					beforeNum: acc(this.state.beforeNum, this.state.input),
-					input: 0,
-					isOperation: isOperation,
-				});
-			} else {
-				this.setState({
-					...this.state,
-					beforeNum: String(this.state.input || ""),
-					input: 0,
-					isOperation: isOperation,
-				});
-			}
-		},
+		$onResult: onResult,
 	});
 
 	/**
 	 * 숫자를 입력받는 컴포넌트
 	 */
 
+	const onInputClick = (newInput) => {
+		this.setState({
+			...this.state,
+			isWrite: true,
+		});
+
+		if (String(this.state.input).length > 2) {
+			console.log("숫자는 세자리까지만 입력 가능합니다."); // alert로 바꿔야함
+			console.log(this.state);
+			return;
+		}
+
+		this.setState({
+			...this.state,
+			input: acc(this.state.input, newInput),
+		});
+	};
+
+	const onInputReset = () => {
+		this.setState({
+			...this.state,
+			input: 0,
+		});
+	};
+
 	const inputContainer = new InputContainer({
 		$target: $app,
 		$initialState: this.state.numStack,
-		$onClick: (newInput) => {
-			if (this.state.input.length > 2) {
-				console.log("숫자는 세자리까지만 입력 가능합니다."); // alert로 바꿔야함
-				console.log(this.state);
-				return;
-			}
-
-			this.setState({
-				...this.state,
-				input: acc(this.state.input, newInput),
-			});
-		},
-		$onReset: () => {
-			this.setState({
-				...this.state,
-				input: 0,
-			});
-		},
+		$onClick: onInputClick,
+		$onReset: onInputReset,
 	});
 
 	inputContainer.render();

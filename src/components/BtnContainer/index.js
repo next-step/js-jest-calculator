@@ -1,12 +1,6 @@
 import { createEl } from "@/utils/createEl";
 import Btn from "@/components/Btn";
-export default function BtnContainer({
-	$target,
-	$initialState,
-	$onClick,
-	$onSetIsOperation,
-	$onResult,
-}) {
+export default function BtnContainer({ $target, $onResult }) {
 	const $btnContainer = createEl("div", "BtnContainer");
 
 	this.state = {
@@ -22,64 +16,27 @@ export default function BtnContainer({
 		$target.appendChild($btnContainer);
 	};
 
-	new Btn({
-		$target: $btnContainer,
-		$text: "더하기 버튼",
-		$onClick: () => {
-			console.log("add");
-			$onSetIsOperation(true);
-			this.setState({
-				...this.state,
-				operation: "add",
-			});
-		},
-	});
+	const operatorType = ["add", "subtract", "multiply", "divide", "result"];
 
-	new Btn({
-		$target: $btnContainer,
-		$text: "뺄셈 버튼",
-		$onClick: () => {
-			console.log("subtract");
-			$onSetIsOperation(true);
-			this.setState({
-				...this.state,
-				operation: "subtract",
-			});
-		},
-	});
+	const onSetOperationType = (operationType) => {
+		if (operationType === "result") {
+			$onResult(this.state.operation, true);
+			return;
+		}
 
-	new Btn({
-		$target: $btnContainer,
-		$text: "곱셈 버튼",
-		$onClick: () => {
-			console.log("multiply");
-			$onSetIsOperation(true);
-			this.setState({
-				...this.state,
-				operation: "multiply",
-			});
-		},
-	});
+		this.setState({
+			...this.state,
+			operation: operationType,
+		});
 
-	new Btn({
-		$target: $btnContainer,
-		$text: "나눗셈 버튼",
-		$onClick: () => {
-			console.log("divide");
-			$onSetIsOperation(true);
-			this.setState({
-				...this.state,
-				operation: "divide",
-			});
-		},
-	});
-	new Btn({
-		$target: $btnContainer,
-		$text: "결과 버튼",
-		$onClick: () => {
-			if (this.state.operation === false) return;
-			console.log("result");
-			$onResult(this.state.operation);
-		},
+		$onResult(this.state.operation);
+	};
+
+	operatorType.forEach((type) => {
+		new Btn({
+			$target: $btnContainer,
+			$text: `${type} 버튼`,
+			$onClick: () => onSetOperationType(type),
+		});
 	});
 }

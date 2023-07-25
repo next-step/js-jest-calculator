@@ -55,4 +55,15 @@ describe("Calculator", () => {
     expect(calculator.divide(6, 0)).toEqual(Calculator.ERRORS.DIVIDE_BY_ZERO);
     expect(calculator.divide(6, "0")).toEqual(Calculator.ERRORS.DIVIDE_BY_ZERO);
   });
+
+  test("숫자는 한번에 최대 3자리 수까지만 다룰 수 있다", () => {
+    expect(calculator.add(1000, 2)).toEqual(Calculator.ERRORS.INVALID_INPUT);
+    expect(calculator.subtract(1000, 2)).toEqual(
+      Calculator.ERRORS.INVALID_INPUT
+    );
+    expect(calculator.multiply(1000, 2)).toEqual(
+      Calculator.ERRORS.INVALID_INPUT
+    );
+    expect(calculator.divide(1000, 2)).toEqual(Calculator.ERRORS.INVALID_INPUT);
+  });
 });

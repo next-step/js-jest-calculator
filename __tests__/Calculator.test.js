@@ -1,4 +1,4 @@
-import { sum, subtract, multiply } from "../src/Calculator.js";
+import { sum, subtract, multiply, divide } from "../src/Calculator.js";
 
 describe("덧셈 테스트", () => {
   test("한 자리 숫자 덧셈 테스트", () => {
@@ -144,5 +144,60 @@ describe("곱셈 테스트", () => {
     expect(() => multiply(["010", "1"])).toThrowError();
     expect(() => multiply(["00", "000"])).toThrowError();
     expect(() => multiply(["999", "999"])).toThrowError();
+  });
+});
+
+describe("나눗셈 테스트", () => {
+  test("한 자리 숫자 나눗셈 테스트", () => {
+    expect(() => divide([0, 0])).toThrowError(); //0으로 나눌 수 없음
+    expect(divide([0, 1])).toBe(0);
+    expect(divide([1, 3])).toBe(0); //0.333... 소수점 버림
+    expect(divide([9, 9])).toBe(1);
+    expect(divide([9, 2])).toBe(4); //4.5 소수점 버림
+  });
+
+  test("두 자리 숫자 나눗셈 테스트", () => {
+    expect(divide([10, 10])).toBe(1);
+    expect(divide([99, 11])).toBe(9); //1089
+    expect(divide([99, 10])).toBe(9); //9.9
+    expect(divide([10, 99])).toBe(0); //0.101010...
+    expect(divide([99, 99])).toBe(1);
+    expect(() => divide([99, 0])).toThrowError(); //0으로 나눌 수 없음
+  });
+
+  test("세 자리 숫자 나눗셈 테스트", () => {
+    expect(divide([999, 999])).toBe(1);
+    expect(divide([0, 999])).toBe(0);
+    expect(divide([999, 1])).toBe(999);
+    expect(divide([999, 2])).toBe(499); //499.5
+    expect(() => divide([999, 0])).toThrowError(); //0으로 나눌 수 없음
+  });
+
+  test("네 자리 이상 숫자 나눗셈 테스트", () => {
+    expect(() => divide([0, 1000])).toThrowError(); //입력 4자리
+    expect(() => divide([9999, 9999])).toThrowError(); //입력 4자리
+  });
+
+  test("실수 숫자 나눗셈 테스트", () => {
+    expect(() => divide([12.5, 10.1])).toThrowError(); //12.5는 소수점까지 4자리 수로 봄
+    expect(divide([9.9, 999])).toBe(0); //0.0099...
+    expect(divide([9.9, 9.9])).toBe(1);
+    expect(divide([100, 9.9])).toBe(10); //10.1010...
+  });
+
+  test("'-' 포함한 숫자 테스트", () => {
+    expect(() => divide([-999, 0])).toThrowError(); // 입력 3자리 초과, 0으로 나눌 수 없음
+    expect(divide([-99, 999])).toBe(0); // -0.099
+    expect(divide([-99, -10])).toBe(9); // 9.9
+    expect(divide([-99, 10])).toBe(-9); // -9.9
+    expect(divide([-99, 1])).toBe(-99);
+    expect(divide([-99, -99])).toBe(1);
+  });
+
+  test("문자를 입력한 경우 에러가 발생한다", () => {
+    expect(() => divide(["100", "000"])).toThrowError();
+    expect(() => divide(["010", "1"])).toThrowError();
+    expect(() => divide(["00", "000"])).toThrowError();
+    expect(() => divide(["999", "999"])).toThrowError();
   });
 });

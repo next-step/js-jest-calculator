@@ -1,4 +1,4 @@
-import { Calculator } from "../src";
+import { Calculator } from "../src/Calculator";
 import { ERROR_MSG } from "../src/constants";
 
 const calculator = new Calculator();

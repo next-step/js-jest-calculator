@@ -23,26 +23,28 @@ export class Calculator {
     }
 
     calculate(operand1, operand2, operator) {
-        this.validate(operand1, operand2, operator);
+        try {
+            this.validate(operand1, operand2, operator);
 
-        switch (operator) {
-            case OPERATOR.SUM:
-                this.#value = operand1 + operand2;
-                break;
-            case OPERATOR.SUBTRACT:
-                this.#value = operand1 - operand2;
-                break;
-            case OPERATOR.MULTIPLY:
-                this.#value = operand1 * operand2;
-                break;
-            case OPERATOR.DIVIDE:
-                this.#value = operand1 / operand2;
-                break;
-            default:
-                break;
+            switch (operator) {
+                case OPERATOR.SUM:
+                    this.#value = operand1 + operand2;
+                    break;
+                case OPERATOR.SUBTRACT:
+                    this.#value = operand1 - operand2;
+                    break;
+                case OPERATOR.MULTIPLY:
+                    this.#value = operand1 * operand2;
+                    break;
+                case OPERATOR.DIVIDE:
+                    this.#value = operand1 / operand2;
+                    break;
+                default:
+                    break;
+            }
+        } catch (err) {
+            throw new Error(err.message);
         }
-
-        return Math.floor(this.#value);
     }
 
     getValue() {

@@ -22,6 +22,9 @@ describe('✅ 입력 테스트', () => {
     describe('피연산자는 숫자만 입력할 수 있다.', () => {
         test.each([
             {num1: 'TEST', num2: 3, operator: "+", errorMsg: ERROR_MSG.OPERAND_TYPE},
+            {num1: "37", num2: 3, operator: "+", errorMsg: ERROR_MSG.OPERAND_TYPE},
+            {num1: "", num2: 3, operator: "+", errorMsg: ERROR_MSG.OPERAND_TYPE},
+            {num1: null, num2: 3, operator: "+", errorMsg: ERROR_MSG.OPERAND_TYPE},
         ])("$num1 $operator $num2 = ERROR", ({num1, num2, operator, errorMsg}) => {
             expect(() => {
                 calculator.calculate(num1, num2, operator);
@@ -48,7 +51,6 @@ describe('✅ 입력 테스트', () => {
             }).toThrow(errorMsg);
         });
     });
-
 });
 
 describe('✅ 연산 테스트', () => {

@@ -1,3 +1,5 @@
+<h1>Nextstep 온보딩</h1>
+
 <p align="middle" >
   <img width="100px;" src="https://github.com/next-step/js-calculator/raw/main/src/images/calculator_icon.png"/>
 </p>

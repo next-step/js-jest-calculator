@@ -5,3 +5,4 @@
 <p align="middle">jest를 이용해 테스트해보는 계산기</p>
 
 commit 테스트
+pr 테스트를 위한 코드 수정
